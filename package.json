@@ -1,5 +1,5 @@
 {
-  "name": "pjt",
+  "name": "th-mono",
   "private": true,
   "scripts": {
     "build": "turbo build",
