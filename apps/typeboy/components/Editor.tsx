@@ -7,7 +7,7 @@ import {
   KeyboardEventHandler,
   useRef,
 } from "react";
-import { useTypingHook } from "./useTypingHook";
+import { useTypingHook } from "../hooks";
 import { formatNumber } from "@repo/util";
 import { cn } from "@repo/ui/lib/utils";
 
