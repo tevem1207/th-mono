@@ -134,12 +134,6 @@ importers:
       '@next/eslint-plugin-next':
         specifier: ^15.1.0
         version: 15.1.0
-      '@typescript-eslint/eslint-plugin':
-        specifier: ^8.19.0
-        version: 8.19.0(@typescript-eslint/parser@8.19.0(eslint@9.15.0(jiti@1.21.7))(typescript@5.5.4))(eslint@9.15.0(jiti@1.21.7))(typescript@5.5.4)
-      '@typescript-eslint/parser':
-        specifier: ^8.19.0
-        version: 8.19.0(eslint@9.15.0(jiti@1.21.7))(typescript@5.5.4)
       eslint:
         specifier: ^9.15.0
         version: 9.15.0(jiti@1.21.7)
