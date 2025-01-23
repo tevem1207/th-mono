@@ -1,0 +1,38 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["driverAdapters"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model user {
+  id                Int        @id @default(autoincrement())
+  oauthProvider     String     @db.VarChar(50) // OAuth 제공자 (예: Google, GitHub 등)
+  oauthId           String     @unique // OAuth 제공자가 제공하는 사용자 고유 ID
+  email             String?    @unique // 이메일 (선택적)
+  name              String? // 사용자 이름
+  avatarUrl         String?    @db.Text // 프로필 이미지 URL
+  createdAt         DateTime   @default(now()) // 생성 시간
+  updatedAt         DateTime   @updatedAt // 업데이트 시간
+  practiceSentences sentence[] // User와 PracticeSentence의 1:N 관계
+}
+
+model sentence {
+  id           Int       @id @default(autoincrement())
+  text         String // 내용
+  source       String // 문장의 출처
+  user         user?     @relation(fields: [userId], references: [id]) // User와 관계
+  userId       Int? // User의 ID (nullable)
+  isAdmin      Boolean   @default(false) // 관리자 추가 여부
+  createdAt    DateTime  @default(now()) // 생성 시간
+  language     language? @relation(fields: [languageCode], references: [languageCode]) // Language와 관계
+  languageCode String?
+}
+
+model language {
+  languageCode String     @id // 언어 코드 (ISO 639-1)
+  sentences    sentence[] // Language와 Sentence의 1:N 관계
+}

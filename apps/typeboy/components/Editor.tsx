@@ -11,10 +11,7 @@ import { useTypingHook } from "../hooks";
 import { formatNumber } from "@repo/util";
 import { cn } from "@repo/ui/lib/utils";
 
-const text =
-  "대충 흑백 사진에 글 쓰면 명언 같다. 대충 흑백 사진에 글 쓰면 명언 같다.";
-
-export const Editor = () => {
+export const Editor = ({ text }: { text: string }) => {
   const { inputText, cpm, accuracy, handleInputChange } = useTypingHook(text);
 
   const inputRef = useRef<HTMLInputElement>(null);
@@ -49,7 +46,7 @@ export const Editor = () => {
       onSubmit={handleFormSubmit}
     >
       <div className="px-10 flex flex-wrap">
-        {text.split("").map((char, index) => {
+        {text?.split("").map((char, index) => {
           const isLast = index === inputText.length - 1;
           const inputChar = inputText[index];
 
