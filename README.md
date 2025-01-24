@@ -2,14 +2,6 @@
 
 Welcome to my personal monorepo project! This repository contains multiple applications and packages that I am working on.
 
-## Table of Contents
-
-- [th-mono](#th-mono)
-  - [Table of Contents](#table-of-contents)
-  - [Applications](#applications)
-  - [Packages](#packages)
-  - [License](#license)
-
 ## Applications
 
 - [TypeBoy](apps/typeboy/README.md)
