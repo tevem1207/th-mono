@@ -1,12 +1,9 @@
 import "@repo/ui/globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { getQueryClient } from "./getQueryClient";
 import Providers from "./provider";
 
 const inter = Inter({ subsets: ["latin"] });
-
-export const queryClient = getQueryClient();
 
 export const metadata: Metadata = {
   title: "Docs",
