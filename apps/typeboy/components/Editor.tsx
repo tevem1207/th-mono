@@ -111,7 +111,7 @@ const EditorText = ({
   ...props
 }: ComponentPropsWithoutRef<"p"> & { isCursor?: boolean }) => {
   return (
-    <div className="font-mono flex w-5 text-2xl justify-center">
+    <div className="font-[D2Coding] flex w-5 text-2xl justify-center">
       {isCursor && (
         <span className="border animate-cursor border-gray-900 box-border" />
       )}

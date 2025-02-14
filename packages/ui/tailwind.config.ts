@@ -79,9 +79,6 @@ const config = {
         "accordion-up": "accordion-up 0.2s ease-out",
         cursor: "cursor 1s ease  infinite",
       },
-      fontFamily: {
-        editor: ["monospace"],
-      },
     },
   },
   plugins: [tailwindcssAnimate],
