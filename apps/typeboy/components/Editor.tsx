@@ -10,9 +10,20 @@ import {
 import { useTypingHook } from "../hooks";
 import { formatNumber } from "@repo/util";
 import { cn } from "@repo/ui/lib/utils";
+import { useQuery } from "@tanstack/react-query";
+import { sentence } from "@prisma/client";
 
-export const Editor = ({ text }: { text: string }) => {
-  const { inputText, cpm, accuracy, handleInputChange } = useTypingHook(text);
+export const Editor = () => {
+  const { data } = useQuery<sentence>({
+    queryKey: ["sentences", "1"],
+    queryFn: async () => {
+      const response = await fetch("/api/sentences/2");
+      return response.json();
+    },
+  });
+  const { inputText, cpm, accuracy, handleInputChange } = useTypingHook(
+    data?.text
+  );
 
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -46,7 +57,7 @@ export const Editor = ({ text }: { text: string }) => {
       onSubmit={handleFormSubmit}
     >
       <div className="px-10 flex flex-wrap">
-        {text?.split("").map((char, index) => {
+        {data?.text.split("").map((char, index) => {
           const isLast = index === inputText.length - 1;
           const inputChar = inputText[index];
 

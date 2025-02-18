@@ -1,7 +1,7 @@
 import { ChangeEventHandler, useEffect, useMemo, useState } from "react";
 import { disassemble } from "es-hangul";
 
-export const useTypingHook = (text: string) => {
+export const useTypingHook = (text?: string) => {
   const [inputText, setInputText] = useState("");
   const [elapsedTime, setElapsedTime] = useState(0);
 
@@ -16,7 +16,7 @@ export const useTypingHook = (text: string) => {
         .slice(0, -1)
         .split("")
         .filter((char, index) => {
-          return char === text[index];
+          return text && char === text[index];
         }).length /
         inputText.slice(0, -1).length) *
       100,
