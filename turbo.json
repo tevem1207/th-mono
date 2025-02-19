@@ -1,7 +1,6 @@
 {
   "$schema": "https://turbo.build/schema.json",
   "ui": "tui",
-  "envMode": "loose",
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
@@ -19,5 +18,5 @@
       "persistent": true
     }
   },
-  "globalEnv": ["NODE_ENV"]
+  "globalPassThroughEnv": ["NODE_ENV"]
 }
