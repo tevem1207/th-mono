@@ -122,19 +122,16 @@ const EditorText = ({
   ...props
 }: ComponentPropsWithoutRef<"p"> & { isCursor?: boolean }) => {
   return (
-    <div className="font-mono flex w-5 text-2xl justify-center">
-      {isCursor && (
-        <span className="border animate-cursor border-gray-900 box-border" />
-      )}
-      {children === " " ? (
-        <p className={cn(!isCursor && "ml-[2px]", className)} {...props}>
-          &nbsp;
-        </p>
-      ) : (
-        <p className={cn(!isCursor && "ml-[2px]", className)} {...props}>
-          {children}
-        </p>
-      )}
+    <div className="font-[D2Coding] flex w-6 text-2xl justify-left">
+      <span
+        className={cn(
+          "border box-border border-transparent",
+          isCursor && "animate-cursor border-gray-900"
+        )}
+      />
+      <p className={cn("flex-1", className)} {...props}>
+        {children === " " ? "\u00A0" : children}
+      </p>
     </div>
   );
 };
