@@ -1,8 +1,6 @@
-import { getPrismaClient } from "../../../lib";
+import { prisma } from "@/lib";
 
 export async function GET() {
-  const prisma = getPrismaClient();
-
   const sentences = await prisma.sentence.findMany({
     include: {
       user: true,

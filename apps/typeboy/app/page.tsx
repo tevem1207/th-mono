@@ -1,20 +1,25 @@
-"use client";
-
-import { useQuery } from "@tanstack/react-query";
-import { Editor } from "../components";
-import { sentence } from "@prisma/client";
+import { auth } from "@/auth";
+import { Editor, SignIn, SignOut } from "@/components";
 
 export default function Page() {
-  const { data, isFetched } = useQuery<sentence>({
-    queryKey: ["sentences", "1"],
-    queryFn: async () => {
-      const response = await fetch("/api/sentences/2");
-      return response.json();
-    },
-  });
   return (
-    <main className="flex items-center h-dvh justify-center px-6">
-      {isFetched && <Editor text={data?.text ?? ""} />}
-    </main>
+    <>
+      <header className="flex items-center justify-end px-6 py-4">
+        <Authentication />
+      </header>
+      <main className="flex items-center h-dvh justify-center px-6">
+        <Editor />
+      </main>
+    </>
+  );
+}
+
+async function Authentication() {
+  const session = await auth();
+
+  return (
+    <div className="flex items-center gap-4">
+      {session?.user ? <SignOut /> : <SignIn />}
+    </div>
   );
 }
