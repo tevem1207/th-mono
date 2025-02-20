@@ -8,31 +8,91 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model user {
-  id                Int        @id @default(autoincrement())
-  oauthProvider     String     @db.VarChar(50) // OAuth 제공자 (예: Google, GitHub 등)
-  oauthId           String     @unique // OAuth 제공자가 제공하는 사용자 고유 ID
-  email             String?    @unique // 이메일 (선택적)
-  name              String? // 사용자 이름
-  avatarUrl         String?    @db.Text // 프로필 이미지 URL
-  createdAt         DateTime   @default(now()) // 생성 시간
-  updatedAt         DateTime   @updatedAt // 업데이트 시간
-  practiceSentences sentence[] // User와 PracticeSentence의 1:N 관계
+model User {
+  id            String          @id @default(cuid())
+  name          String?
+  email         String          @unique
+  emailVerified DateTime?
+  image         String?
+  accounts      Account[]
+  sessions      Session[]
+  sentences     Sentence[]
+  // Optional for WebAuthn support
+  Authenticator Authenticator[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
-model sentence {
+model Account {
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@id([provider, providerAccountId])
+}
+
+model Session {
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model VerificationToken {
+  identifier String
+  token      String
+  expires    DateTime
+
+  @@id([identifier, token])
+}
+
+// Optional for WebAuthn support
+model Authenticator {
+  credentialID         String  @unique
+  userId               String
+  providerAccountId    String
+  credentialPublicKey  String
+  counter              Int
+  credentialDeviceType String
+  credentialBackedUp   Boolean
+  transports           String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@id([userId, credentialID])
+}
+
+model Sentence {
   id           Int       @id @default(autoincrement())
   text         String // 내용
   source       String // 문장의 출처
-  user         user?     @relation(fields: [userId], references: [id]) // User와 관계
-  userId       Int? // User의 ID (nullable)
+  userId       String?
   isAdmin      Boolean   @default(false) // 관리자 추가 여부
   createdAt    DateTime  @default(now()) // 생성 시간
-  language     language? @relation(fields: [languageCode], references: [languageCode]) // Language와 관계
+  language     Language? @relation(fields: [languageCode], references: [languageCode]) // Language와 관계
   languageCode String?
+
+  user User? @relation(fields: [userId], references: [id])
 }
 
-model language {
+model Language {
   languageCode String     @id // 언어 코드 (ISO 639-1)
-  sentences    sentence[] // Language와 Sentence의 1:N 관계
+  sentences    Sentence[] // Language와 Sentence의 1:N 관계
 }
