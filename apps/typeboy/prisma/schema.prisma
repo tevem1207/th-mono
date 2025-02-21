@@ -16,7 +16,7 @@ model User {
   image         String?
   accounts      Account[]
   sessions      Session[]
-  sentences     Sentence[]
+  memos         Memo[]
   // Optional for WebAuthn support
   Authenticator Authenticator[]
 
@@ -79,20 +79,26 @@ model Authenticator {
   @@id([userId, credentialID])
 }
 
-model Sentence {
+model Memo {
   id           Int       @id @default(autoincrement())
   text         String // 내용
   source       String // 문장의 출처
   userId       String?
-  isAdmin      Boolean   @default(false) // 관리자 추가 여부
   createdAt    DateTime  @default(now()) // 생성 시간
   language     Language? @relation(fields: [languageCode], references: [languageCode]) // Language와 관계
   languageCode String?
 
   user User? @relation(fields: [userId], references: [id])
+  tags Tag[] @relation("MemoTags")
+}
+
+model Tag {
+  id    Int    @id @default(autoincrement())
+  name  String @unique
+  memos Memo[] @relation("MemoTags")
 }
 
 model Language {
-  languageCode String     @id // 언어 코드 (ISO 639-1)
-  sentences    Sentence[] // Language와 Sentence의 1:N 관계
+  languageCode String @id // 언어 코드 (ISO 639-1)
+  memos        Memo[] // Language와 Memo의 1:N 관계
 }
