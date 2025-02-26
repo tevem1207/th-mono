@@ -1,5 +1,7 @@
+import { Memo } from "@prisma/client";
 import { Table, TableBody, TableCell, TableRow } from "@repo/ui";
-import { ReactNode } from "react";
+import Link from "next/link";
+import { HTMLAttributes, ReactNode } from "react";
 
 export const MemoList = ({ children }: { children: ReactNode }) => {
   return (
@@ -10,16 +12,19 @@ export const MemoList = ({ children }: { children: ReactNode }) => {
 };
 
 export const MemoItem = ({
-  children,
-  isLiked,
+  memo,
+  ...props
 }: {
-  children: ReactNode;
-  isLiked: boolean;
-}) => {
+  memo: Memo;
+} & HTMLAttributes<HTMLTableRowElement>) => {
   return (
-    <TableRow>
-      <TableCell>{children}</TableCell>
-      <TableCell>{isLiked}</TableCell>
+    <TableRow {...props}>
+      <TableCell>
+        <Link href={`/memos/${memo.id}`}>{memo.text}</Link>
+      </TableCell>
+      <TableCell>{"isLiked"}</TableCell>
     </TableRow>
   );
 };
+
+export const MemoDetail = () => {};

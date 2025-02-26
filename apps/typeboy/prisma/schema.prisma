@@ -20,8 +20,11 @@ model User {
   // Optional for WebAuthn support
   Authenticator Authenticator[]
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  Comment   Comment[]
+  Like      Like[]
+  Source    Source[]
 }
 
 model Account {
@@ -82,14 +85,49 @@ model Authenticator {
 model Memo {
   id           Int       @id @default(autoincrement())
   text         String // 내용
-  source       String // 문장의 출처
+  source       Source    @relation(fields: [sourceId], references: [id])
+  sourceId     Int // 문장의 출처
+  user         User?     @relation(fields: [userId], references: [id])
   userId       String?
   createdAt    DateTime  @default(now()) // 생성 시간
+  updatedAt    DateTime  @updatedAt // 수정 시간
   language     Language? @relation(fields: [languageCode], references: [languageCode]) // Language와 관계
   languageCode String?
 
-  user User? @relation(fields: [userId], references: [id])
-  tags Tag[] @relation("MemoTags")
+  tags     Tag[]     @relation("MemoTags")
+  comments Comment[]
+  likes    Like[]
+}
+
+model Source {
+  id     Int     @id @default(autoincrement())
+  user   User?   @relation(fields: [userId], references: [id])
+  userId String?
+  name   String
+  Memo   Memo[]
+}
+
+model Comment {
+  id        Int      @id @default(autoincrement())
+  text      String
+  userId    String
+  memoId    Int
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  memo Memo @relation(fields: [memoId], references: [id], onDelete: Cascade)
+}
+
+model Like {
+  id        Int      @id @default(autoincrement())
+  userId    String
+  memoId    Int
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  memo Memo @relation(fields: [memoId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, memoId])
 }
 
 model Tag {
