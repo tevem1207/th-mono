@@ -8,7 +8,7 @@
       "outputs": [".next/**", "!.next/cache/**"]
     },
     "typeboy#build": {
-      "env": ["DATABASE_*", "AUTH_*"]
+      "env": ["DATABASE_*", "AUTH_*", "TEST_USER_ID"]
     },
     "lint": {
       "dependsOn": ["^lint"]
