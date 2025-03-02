@@ -10,7 +10,11 @@ export async function GET(request: Request) {
 
   if (random) {
     const data = await prisma.$queryRaw<Memo[]>`
-      SELECT * FROM "Memo"
+      SELECT "Memo".*, 
+             (SELECT json_agg("User") FROM "User" WHERE "User"."id" = "Memo"."userId") as user,
+             (SELECT json_agg("Like") FROM "Like" WHERE "Like"."memoId" = "Memo"."id") as likes,
+             (SELECT json_agg("Comment") FROM "Comment" WHERE "Comment"."memoId" = "Memo"."id") as comments
+      FROM "Memo"
       ORDER BY RANDOM()
       LIMIT ${pageSize}
     `;
@@ -24,6 +28,7 @@ export async function GET(request: Request) {
     include: {
       user: true,
       likes: true,
+      comments: true,
     },
   });
 

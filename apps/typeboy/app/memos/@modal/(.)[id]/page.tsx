@@ -1,4 +1,5 @@
 import { fetchMemo } from "@/api";
+import MemoPage from "@/app/memos/[id]/page";
 import { Modal } from "@/components";
 
 export default async function Page({
@@ -9,7 +10,7 @@ export default async function Page({
   const memo = await fetchMemo((await params).id);
   return (
     <Modal title={memo.text}>
-      <div>{memo.text}</div>
+      <MemoPage params={params} />
     </Modal>
   );
 }

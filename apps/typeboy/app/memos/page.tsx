@@ -2,12 +2,15 @@
 import { fetchMemos } from "@/api";
 import { MemoItem, MemoList } from "@/components";
 import { useQuery } from "@tanstack/react-query";
+import { useSession } from "next-auth/react";
 
 export default function Page() {
   const { data, isFetched } = useQuery({
     queryKey: ["memos"],
     queryFn: fetchMemos,
   });
+  const session = useSession();
+
   if (!isFetched) return <div>Loading...</div>;
 
   if (!data) return <div>No data</div>;
@@ -15,7 +18,9 @@ export default function Page() {
   const { data: memos } = data;
   return (
     <MemoList>
-      {memos?.map((memo, index) => <MemoItem key={index} memo={memo} />)}
+      {memos?.map((memo, index) => (
+        <MemoItem key={index} memo={memo} userId={session.data?.user?.id} />
+      ))}
     </MemoList>
   );
 }

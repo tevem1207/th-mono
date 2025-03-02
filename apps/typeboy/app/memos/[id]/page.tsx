@@ -1,4 +1,6 @@
 import { fetchMemo } from "@/api";
+import { auth } from "@/auth";
+import { MemoDetail } from "@/components";
 
 export default async function Page({
   params,
@@ -6,5 +8,7 @@ export default async function Page({
   params: Promise<{ id: string }>;
 }) {
   const memo = await fetchMemo((await params).id);
-  return <div>{memo.text}</div>;
+  const session = await auth();
+
+  return <MemoDetail memo={memo} userId={session?.user?.id} />;
 }

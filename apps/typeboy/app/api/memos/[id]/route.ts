@@ -10,6 +10,11 @@ export async function GET(
     where: {
       id: parseInt(id),
     },
+    include: {
+      user: true,
+      likes: true,
+      comments: true,
+    },
   });
   return Response.json(memo);
 }
