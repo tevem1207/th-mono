@@ -6,6 +6,10 @@ export const fetchMemos = async (): Promise<PaginationResult<Memo>> => {
   return (await fetch(`${API_URL}/api/memos`)).json();
 };
 
+export const fetchRandomMemos = async (): Promise<Memo[]> => {
+  return (await fetch(`${API_URL}/api/memos?random=true&pageSize=${5}`)).json();
+};
+
 export const fetchMemo = async (id: string): Promise<Memo> => {
   return (await fetch(`${API_URL}/api/memos/${id}`)).json();
 };

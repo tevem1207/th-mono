@@ -1,5 +1,15 @@
-const memoData = { isLiked: true, text: "대충 흑백 사진에 글 쓰면 명언 같다." };
+import { fetchMemo } from "@/api";
+import { Modal } from "@/components";
 
-export default function Page() {
-  return <div>{memoData.text}</div>;
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const memo = await fetchMemo((await params).id);
+  return (
+    <Modal title={memo.text}>
+      <div>{memo.text}</div>
+    </Modal>
+  );
 }

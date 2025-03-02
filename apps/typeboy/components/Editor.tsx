@@ -11,15 +11,11 @@ import {
 import { useTypingHook } from "../hooks";
 import { formatNumber } from "@repo/util";
 import { cn } from "@repo/ui/lib/utils";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import { Memo } from "@prisma/client";
-import { fetchMemos, submitMemo } from "@/api";
+import { submitMemo } from "@/api";
 
-export const Editor = () => {
-  const { data } = useQuery<Memo>({
-    queryKey: ["memos", "1"],
-    queryFn: fetchMemos,
-  });
+export const Editor = ({ data }: { data?: Memo }) => {
   const memoizedText = useMemo(() => data?.text.split(""), [data?.text]);
   const inputRef = useRef<HTMLInputElement>(null);
   const { inputText, cpm, accuracy, handleInputChange } = useTypingHook(

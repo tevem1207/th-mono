@@ -1,3 +1,5 @@
+import { Dialog } from "@repo/ui";
+
 export default function MemoLayout({
   children,
   modal,
@@ -7,8 +9,8 @@ export default function MemoLayout({
 }) {
   return (
     <main>
-      {children}
-      {modal}
+      <section>{children}</section>
+      <Dialog>{modal}</Dialog>
     </main>
   );
 }

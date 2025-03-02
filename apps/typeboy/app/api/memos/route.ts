@@ -15,7 +15,7 @@ export async function GET(request: Request) {
       LIMIT ${pageSize}
     `;
 
-    return Response.json({ data });
+    return Response.json(data);
   }
 
   const data = await prisma.memo.findMany({

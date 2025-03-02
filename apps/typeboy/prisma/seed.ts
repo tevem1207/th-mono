@@ -1,6 +1,4 @@
-import { PrismaClient } from "@prisma/client";
-
-const prisma = new PrismaClient();
+import { prisma } from "@/lib";
 
 async function seedLanguage() {
   const languageCount = await prisma.language.count();

@@ -5,7 +5,8 @@
     "build": {
       "dependsOn": ["^build"],
       "inputs": ["$TURBO_DEFAULT$", ".env*"],
-      "outputs": [".next/**", "!.next/cache/**"]
+      "outputs": [".next/**", "!.next/cache/**"],
+      "env": ["VERCEL_*"]
     },
     "typeboy#build": {
       "env": ["DATABASE_*", "AUTH_*", "TEST_USER_ID"]
