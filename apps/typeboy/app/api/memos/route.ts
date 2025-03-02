@@ -1,13 +1,24 @@
 import { prisma } from "@/lib";
-import { Prisma } from "@prisma/client";
+import { Memo, Prisma } from "@prisma/client";
 
 export async function GET(request: Request) {
   const url = new URL(request.url);
   const page = parseInt(url.searchParams.get("page") || "0");
   const pageSize = parseInt(url.searchParams.get("pageSize") || "10");
+  const random = url.searchParams.get("random") === "true";
   const skip = page * pageSize;
 
-  const sentences = await prisma.memo.findMany({
+  if (random) {
+    const data = await prisma.$queryRaw<Memo[]>`
+      SELECT * FROM "Memo"
+      ORDER BY RANDOM()
+      LIMIT ${pageSize}
+    `;
+
+    return Response.json({ data });
+  }
+
+  const data = await prisma.memo.findMany({
     skip: skip,
     take: pageSize,
     include: {
@@ -20,7 +31,7 @@ export async function GET(request: Request) {
   const totalPages = Math.ceil(totalMemos / pageSize);
 
   return Response.json({
-    data: sentences,
+    data,
     pagination: {
       page,
       pageSize,
