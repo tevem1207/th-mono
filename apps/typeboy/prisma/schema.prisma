@@ -25,6 +25,7 @@ model User {
   Comment   Comment[]
   Like      Like[]
   Source    Source[]
+  Author    Author[]
 }
 
 model Account {
@@ -97,6 +98,8 @@ model Memo {
   tags     Tag[]     @relation("MemoTags")
   comments Comment[]
   likes    Like[]
+  author   Author?   @relation(fields: [authorId], references: [id])
+  authorId Int?
 }
 
 model Source {
@@ -104,7 +107,15 @@ model Source {
   user   User   @relation(fields: [userId], references: [id])
   userId String
   name   String
-  Memo   Memo[]
+  memo   Memo[]
+}
+
+model Author {
+  id     Int    @id @default(autoincrement())
+  user   User   @relation(fields: [userId], references: [id])
+  userId String
+  name   String
+  memo   Memo[]
 }
 
 model Comment {
