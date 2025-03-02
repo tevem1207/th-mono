@@ -124,6 +124,9 @@ importers:
       next-auth:
         specifier: 5.0.0-beta.25
         version: 5.0.0-beta.25(next@15.2.0)(react@19.0.0)
+      prisma-extension-random:
+        specifier: ^0.2.2
+        version: 0.2.2(@prisma/client@6.2.1)
       react:
         specifier: ^19.0.0
         version: 19.0.0
@@ -3540,6 +3543,14 @@ packages:
 
   /pretty-format@3.8.0:
     resolution: {integrity: sha512-WuxUnVtlWL1OfZFQFuqvnvs6MiAGk9UNsBostyBOB0Is9wb5uRESevA6rnl/rkksXaGX3GzZhPup5d6Vp1nFew==}
+    dev: false
+
+  /prisma-extension-random@0.2.2(@prisma/client@6.2.1):
+    resolution: {integrity: sha512-tjY5w2pSIgwQh0tDT98KTTYJ0uadUwfbTH+6QbPCfLg+gesgeLZNO4oKv8O6/udx54QvEbyXgNC1LUcjtoypcg==}
+    peerDependencies:
+      '@prisma/client': '*'
+    dependencies:
+      '@prisma/client': 6.2.1(prisma@6.4.1)
     dev: false
 
   /prisma@6.4.1(typescript@5.5.4):
