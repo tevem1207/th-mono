@@ -1,9 +1,13 @@
-export const fetchMemos = async () => {
-  return (await fetch("/api/memos")).json();
+import { PaginationResult } from "@/types";
+import { Memo } from "@prisma/client";
+import { API_URL } from ".";
+
+export const fetchMemos = async (): Promise<PaginationResult<Memo>> => {
+  return (await fetch(`${API_URL}/api/memos`)).json();
 };
 
-export const fetchMemo = async (id: string) => {
-  return (await fetch(`/api/memos/${id}`)).json();
+export const fetchMemo = async (id: string): Promise<Memo> => {
+  return (await fetch(`${API_URL}/api/memos/${id}`)).json();
 };
 
 export const submitMemo = async (inputText: string) => {
