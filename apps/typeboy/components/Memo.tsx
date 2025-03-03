@@ -62,14 +62,13 @@ export const MemoActions = ({
         <MessageCircle />
         {memo.comments?.length ?? 0}
       </span>
-      <span
-        className={cn(
-          "flex items-center gap-2",
-          memo.likes.some((like) => like.userId === userId) &&
-            "text-red-500 fill-current"
-        )}
-      >
-        <Heart />
+      <span className="flex items-center gap-2">
+        <Heart
+          className={cn(
+            memo.likes.some((like) => like.userId === userId) &&
+              "text-red-500 fill-current"
+          )}
+        />
         {memo.likes?.length ?? 0}
       </span>
     </div>
