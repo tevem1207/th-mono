@@ -8,31 +8,146 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model user {
-  id                Int        @id @default(autoincrement())
-  oauthProvider     String     @db.VarChar(50) // OAuth 제공자 (예: Google, GitHub 등)
-  oauthId           String     @unique // OAuth 제공자가 제공하는 사용자 고유 ID
-  email             String?    @unique // 이메일 (선택적)
-  name              String? // 사용자 이름
-  avatarUrl         String?    @db.Text // 프로필 이미지 URL
-  createdAt         DateTime   @default(now()) // 생성 시간
-  updatedAt         DateTime   @updatedAt // 업데이트 시간
-  practiceSentences sentence[] // User와 PracticeSentence의 1:N 관계
+model User {
+  id            String          @id @default(cuid())
+  name          String?
+  email         String          @unique
+  emailVerified DateTime?
+  image         String?
+  accounts      Account[]
+  sessions      Session[]
+  memos         Memo[]
+  // Optional for WebAuthn support
+  Authenticator Authenticator[]
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  Comment   Comment[]
+  Like      Like[]
+  Source    Source[]
+  Author    Author[]
 }
 
-model sentence {
+model Account {
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@id([provider, providerAccountId])
+}
+
+model Session {
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model VerificationToken {
+  identifier String
+  token      String
+  expires    DateTime
+
+  @@id([identifier, token])
+}
+
+// Optional for WebAuthn support
+model Authenticator {
+  credentialID         String  @unique
+  userId               String
+  providerAccountId    String
+  credentialPublicKey  String
+  counter              Int
+  credentialDeviceType String
+  credentialBackedUp   Boolean
+  transports           String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@id([userId, credentialID])
+}
+
+model Memo {
   id           Int       @id @default(autoincrement())
   text         String // 내용
-  source       String // 문장의 출처
-  user         user?     @relation(fields: [userId], references: [id]) // User와 관계
-  userId       Int? // User의 ID (nullable)
-  isAdmin      Boolean   @default(false) // 관리자 추가 여부
+  source       Source    @relation(fields: [sourceId], references: [id])
+  sourceId     Int // 문장의 출처
+  user         User      @relation(fields: [userId], references: [id])
+  userId       String
   createdAt    DateTime  @default(now()) // 생성 시간
-  language     language? @relation(fields: [languageCode], references: [languageCode]) // Language와 관계
+  updatedAt    DateTime  @updatedAt // 수정 시간
+  language     Language? @relation(fields: [languageCode], references: [languageCode]) // Language와 관계
   languageCode String?
+
+  tags     Tag[]     @relation("MemoTags")
+  comments Comment[]
+  likes    Like[]
+  author   Author?   @relation(fields: [authorId], references: [id])
+  authorId Int?
 }
 
-model language {
-  languageCode String     @id // 언어 코드 (ISO 639-1)
-  sentences    sentence[] // Language와 Sentence의 1:N 관계
+model Source {
+  id     Int    @id @default(autoincrement())
+  user   User   @relation(fields: [userId], references: [id])
+  userId String
+  name   String
+  memo   Memo[]
+}
+
+model Author {
+  id     Int    @id @default(autoincrement())
+  user   User   @relation(fields: [userId], references: [id])
+  userId String
+  name   String
+  memo   Memo[]
+}
+
+model Comment {
+  id        Int      @id @default(autoincrement())
+  text      String
+  userId    String
+  memoId    Int
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  memo Memo @relation(fields: [memoId], references: [id], onDelete: Cascade)
+}
+
+model Like {
+  id        Int      @id @default(autoincrement())
+  userId    String
+  memoId    Int
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  memo Memo @relation(fields: [memoId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, memoId])
+}
+
+model Tag {
+  id    Int    @id @default(autoincrement())
+  name  String @unique
+  memos Memo[] @relation("MemoTags")
+}
+
+model Language {
+  languageCode String @id // 언어 코드 (ISO 639-1)
+  memos        Memo[] // Language와 Memo의 1:N 관계
 }

@@ -1,18 +1,25 @@
 import { auth } from "@/auth";
-import { Editor, SignIn, SignOut } from "@/components";
+import { SignIn, SignOut } from "@/components/auth";
+import { MemoEditor } from "./MemoEditor";
 
 export default function Page() {
   return (
     <>
-      <header className="flex items-center justify-end px-6 py-4">
-        <Authentication />
-      </header>
-      <main className="flex items-center h-dvh justify-center px-6">
-        <Editor />
+      <Header />
+      <main>
+        <MemoEditor />
       </main>
     </>
   );
 }
+
+const Header = () => {
+  return (
+    <header className="flex items-center justify-end px-6 py-4">
+      <Authentication />
+    </header>
+  );
+};
 
 async function Authentication() {
   const session = await auth();

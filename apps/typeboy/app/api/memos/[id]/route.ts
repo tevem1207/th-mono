@@ -6,10 +6,15 @@ export async function GET(
 ) {
   const { id } = await params;
 
-  const sentence = await prisma.sentence.findUnique({
+  const memo = await prisma.memo.findUnique({
     where: {
       id: parseInt(id),
     },
+    include: {
+      user: true,
+      likes: true,
+      comments: true,
+    },
   });
-  return Response.json(sentence);
+  return Response.json(memo);
 }

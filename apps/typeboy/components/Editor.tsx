@@ -6,26 +6,21 @@ import {
   FormEventHandler,
   KeyboardEventHandler,
   useRef,
+  useMemo,
 } from "react";
 import { useTypingHook } from "../hooks";
 import { formatNumber } from "@repo/util";
 import { cn } from "@repo/ui/lib/utils";
-import { useQuery } from "@tanstack/react-query";
-import { sentence } from "@prisma/client";
+import { useMutation } from "@tanstack/react-query";
+import { Memo } from "@prisma/client";
+import { submitMemo } from "@/api";
 
-export const Editor = () => {
-  const { data } = useQuery<sentence>({
-    queryKey: ["sentences", "1"],
-    queryFn: async () => {
-      const response = await fetch("/api/sentences/2");
-      return response.json();
-    },
-  });
+export const Editor = ({ data }: { data?: Memo }) => {
+  const memoizedText = useMemo(() => data?.text.split(""), [data?.text]);
+  const inputRef = useRef<HTMLInputElement>(null);
   const { inputText, cpm, accuracy, handleInputChange } = useTypingHook(
     data?.text
   );
-
-  const inputRef = useRef<HTMLInputElement>(null);
 
   const handleFormFocus = () => {
     inputRef.current?.focus();
@@ -44,9 +39,13 @@ export const Editor = () => {
     }
   };
 
+  const mutation = useMutation({
+    mutationFn: submitMemo,
+  });
+
   const handleFormSubmit: FormEventHandler = (event) => {
     event.preventDefault();
-    console.log("제출");
+    mutation.mutate(inputText);
   };
 
   return (
@@ -57,13 +56,13 @@ export const Editor = () => {
       onSubmit={handleFormSubmit}
     >
       <div className="px-10 flex flex-wrap">
-        {data?.text.split("").map((char, index) => {
+        {memoizedText?.map((char, index) => {
           const isLast = index === inputText.length - 1;
           const inputChar = inputText[index];
 
           return (
             <div className="flex flex-col mb-4" key={`type-letter-${index}`}>
-              <EditorText
+              <TypingText
                 className={cn(
                   "cursor-default",
                   !isLast &&
@@ -73,16 +72,16 @@ export const Editor = () => {
                 )}
               >
                 {char}
-              </EditorText>
+              </TypingText>
               {inputChar ? (
-                <EditorText>{inputChar}</EditorText>
+                <TypingText>{inputChar}</TypingText>
               ) : (
-                <EditorText
+                <TypingText
                   isCursor={index === inputText.length}
                   className="text-gray-300"
                 >
                   {char}
-                </EditorText>
+                </TypingText>
               )}
             </div>
           );
@@ -115,7 +114,7 @@ export const Editor = () => {
   );
 };
 
-const EditorText = ({
+const TypingText = ({
   children,
   className,
   isCursor,

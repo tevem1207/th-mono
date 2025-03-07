@@ -3,13 +3,14 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { getQueryClient } from "../lib/queryClient";
 import type * as React from "react";
+import { SessionProvider } from "next-auth/react";
 
 export default function Providers({ children }: { children: React.ReactNode }) {
   const queryClient = getQueryClient();
 
   return (
     <QueryClientProvider client={queryClient}>
-      {children}
+      <SessionProvider>{children}</SessionProvider>
       <ReactQueryDevtools />
     </QueryClientProvider>
   );
