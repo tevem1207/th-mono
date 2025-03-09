@@ -5,3 +5,5 @@ export * from "./radio-group";
 export * from "./table";
 export * from "./typography";
 export * from "./label";
+export * from "./card";
+export * from "./badge";
