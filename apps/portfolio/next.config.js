@@ -1,13 +1,16 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   redirects: async () => {
-    return [
-      {
-        source: "/",
-        destination: "https://th-front-portfolio.web.app/",
-        permanent: true,
-      },
-    ];
+    if (process.env.NODE_ENV === "production") {
+      return [
+        {
+          source: "/",
+          destination: "https://th-front-portfolio.web.app/",
+          permanent: true,
+        },
+      ];
+    }
+    return [];
   },
   images: {
     remotePatterns: [
