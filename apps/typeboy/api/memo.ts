@@ -12,3 +12,10 @@ export const fetchRandomMemos = async (): Promise<MemoExtended[]> => {
 export const fetchMemo = async (id: string): Promise<MemoExtended> => {
   return fetcher(`/api/memos/${id}`);
 };
+
+export const submitMemo = async (text: string) => {
+  return fetch(`/api/memos`, {
+    method: "POST",
+    body: JSON.stringify({ text }),
+  });
+};
