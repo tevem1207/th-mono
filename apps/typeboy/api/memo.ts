@@ -1,19 +1,20 @@
 import { MemoExtended, PaginationResult } from "@/types";
+import { BASE_URL, fetcher } from ".";
 
 export const fetchMemos = async (): Promise<PaginationResult<MemoExtended>> => {
-  return (await fetch(`/api/memos`)).json();
+  return fetcher(`${BASE_URL}/api/memos`);
 };
 
 export const fetchRandomMemos = async (): Promise<MemoExtended[]> => {
-  return (await fetch(`/api/memos?random=true&pageSize=${5}`)).json();
+  return fetcher(`${BASE_URL}/api/memos?random=true&pageSize=${5}`);
 };
 
 export const fetchMemo = async (id: string): Promise<MemoExtended> => {
-  return (await fetch(`/api/memos/${id}`)).json();
+  return fetcher(`${BASE_URL}/api/memos/${id}`);
 };
 
 export const submitMemo = async (inputText: string) => {
-  const response = await fetch("/api/submit", {
+  const response = await fetch(`${BASE_URL}/api/submit`, {
     method: "POST",
     body: JSON.stringify({ inputText }),
   });
