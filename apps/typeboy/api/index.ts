@@ -1,11 +1,6 @@
-import { loadEnvConfig } from "@next/env";
-
-const projectDir = process.cwd();
-loadEnvConfig(projectDir);
-
 export const fetcher = async (url: string) => {
-  const BASE_URL = process.env.VERCEL_URL || "http://localhost:3000";
   if (typeof window === "undefined") {
+    const BASE_URL = process.env.VERCEL_URL || "http://localhost:3000";
     url = `${BASE_URL}${url}`;
   }
 
