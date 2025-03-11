@@ -18,6 +18,9 @@ export default function RootLayout({
 }): JSX.Element {
   return (
     <html lang="en">
+      <head>
+        <link rel="icon" href="/logo.svg" />
+      </head>
       <body className={inter.className}>
         <Providers>{children}</Providers>
       </body>
