@@ -1,5 +1,8 @@
+import { connection } from "next/server";
+
 export const fetcher = async (url: string) => {
   if (typeof window === "undefined") {
+    await connection();
     const BASE_URL =
       process.env.NODE_ENV === "development"
         ? "http://localhost:3000"
