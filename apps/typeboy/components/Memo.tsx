@@ -24,7 +24,9 @@ export const MemoItem = ({
   return (
     <TableRow {...props}>
       <TableCell>
-        <Link href={`/memos/${memo.id}`}>{memo.text}</Link>
+        <Link href={`/memos/${memo.id}`} passHref>
+          {memo.text}
+        </Link>
       </TableCell>
       <TableCell>
         <MemoActions memo={memo} userId={userId} />
