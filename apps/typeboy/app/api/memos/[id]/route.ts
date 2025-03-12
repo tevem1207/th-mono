@@ -1,20 +1,35 @@
 import { prisma } from "@/lib";
+import { NextResponse } from "next/server";
 
 export async function GET(
-  _request: Request,
+  request: Request,
   { params }: { params: Promise<{ id: string }> }
 ) {
-  const { id } = await params;
+  const memoId = Number((await params).id);
 
-  const memo = await prisma.memo.findUnique({
-    where: {
-      id: parseInt(id),
-    },
-    include: {
-      user: true,
-      likes: true,
-      comments: true,
-    },
-  });
-  return Response.json(memo);
+  if (isNaN(memoId)) {
+    return NextResponse.json({ error: "Invalid ID provided" }, { status: 400 });
+  }
+
+  try {
+    const memo = await prisma.memo.findUnique({
+      where: { id: memoId },
+      include: {
+        user: true,
+        likes: true,
+        comments: true,
+      },
+    });
+    if (!memo) {
+      return NextResponse.json({ error: "Memo not found" }, { status: 404 });
+    }
+
+    return NextResponse.json(memo);
+  } catch (error) {
+    console.error("Error fetching memo:", error);
+    return NextResponse.json(
+      { error: "Failed to fetch memo" },
+      { status: 500 }
+    );
+  }
 }
