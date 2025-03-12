@@ -1,4 +1,4 @@
-import { fetchMemo } from "@/api";
+import { fetchMemo } from "@/utils/api";
 import { auth } from "@/auth";
 import { MemoDetail } from "@/components";
 

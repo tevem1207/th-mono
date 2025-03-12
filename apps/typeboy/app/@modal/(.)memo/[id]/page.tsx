@@ -1,4 +1,4 @@
-import { fetchMemo } from "@/api";
+import { fetchMemo } from "@/utils/api";
 import MemoPage from "@/app/memos/[id]/page";
 import { Modal } from "@/components";
 

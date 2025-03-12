@@ -13,7 +13,7 @@ import { formatNumber } from "@repo/util";
 import { cn } from "@repo/ui/lib/utils";
 import { useMutation } from "@tanstack/react-query";
 import { Memo } from "@prisma/client";
-import { submitMemo } from "@/api";
+import { submitMemo } from "@/utils/api";
 
 export const Editor = ({ data }: { data?: Memo }) => {
   const memoizedText = useMemo(() => data?.text.split(""), [data?.text]);

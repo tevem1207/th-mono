@@ -1,5 +1,5 @@
 "use client";
-import { fetchRandomMemos } from "@/api";
+import { fetchRandomMemos } from "@/utils/api";
 import { Editor } from "@/components";
 import { useQuery } from "@tanstack/react-query";
 

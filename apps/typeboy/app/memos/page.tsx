@@ -1,5 +1,5 @@
 "use client";
-import { fetchMemos } from "@/api";
+import { fetchMemos } from "@/utils/api";
 import { MemoItem, MemoList } from "@/components";
 import { useQuery } from "@tanstack/react-query";
 import { useSession } from "next-auth/react";
