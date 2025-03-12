@@ -1,6 +1,5 @@
 import "@repo/ui/globals.css";
 import type { Metadata } from "next";
-import { Dialog } from "@repo/ui";
 import { Inter } from "next/font/google";
 import Providers from "./provider";
 import React from "react";
@@ -28,7 +27,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <Providers>
           {children}
-          <Dialog>{modal}</Dialog>
+          {modal}
         </Providers>
       </body>
     </html>
