@@ -1,3 +1,5 @@
+"use client";
+
 import MemoPage from "@/app/memos/[id]/page";
 import { Modal } from "@/components";
 
