@@ -17,10 +17,12 @@ export default function Page() {
 
   const { data: memos } = data;
   return (
-    <MemoList>
-      {memos?.map((memo, index) => (
-        <MemoItem key={index} memo={memo} userId={session.data?.user?.id} />
-      ))}
-    </MemoList>
+    <main>
+      <MemoList>
+        {memos?.map((memo, index) => (
+          <MemoItem key={index} memo={memo} userId={session.data?.user?.id} />
+        ))}
+      </MemoList>
+    </main>
   );
 }
