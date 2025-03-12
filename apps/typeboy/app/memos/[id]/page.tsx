@@ -13,8 +13,6 @@ export default function Page() {
   });
   const session = useSession();
 
-  console.log(data, "test");
-
   if (!isFetched) return <div>Loading...</div>;
 
   if (!data) return <div>No data</div>;
