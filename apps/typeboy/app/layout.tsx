@@ -1,5 +1,6 @@
 import "@repo/ui/globals.css";
 import type { Metadata } from "next";
+import { Dialog } from "@repo/ui";
 import { Inter } from "next/font/google";
 import Providers from "./provider";
 import React from "react";
@@ -14,8 +15,10 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
+  modal,
 }: {
   children: React.ReactNode;
+  modal: React.ReactNode;
 }): JSX.Element {
   return (
     <html lang="en">
@@ -23,7 +26,10 @@ export default function RootLayout({
         <link rel="icon" href="/logo.svg" />
       </head>
       <body className={inter.className}>
-        <Providers>{children}</Providers>
+        <Providers>
+          {children}
+          <Dialog>{modal}</Dialog>
+        </Providers>
       </body>
     </html>
   );
