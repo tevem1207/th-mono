@@ -129,8 +129,8 @@ export default function Portfolio() {
               <div key={index}>
                 <h3 className="text-xl font-semibold mb-4">{category.title}</h3>
                 <div className="flex flex-wrap gap-2">
-                  {category.skills.map((skill) => (
-                    <SkillBadge key={skill} name={skill} />
+                  {category.skills.map(({ name }) => (
+                    <SkillBadge key={name} name={name} />
                   ))}
                 </div>
               </div>
@@ -144,17 +144,9 @@ export default function Portfolio() {
             Project Showcase
           </h2>
 
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid md:grid-cols-3 gap-8">
             {projectsData.map((project, index) => (
-              <ProjectCard
-                key={index}
-                title={project.title}
-                description={project.description}
-                image={project.image}
-                technologies={project.technologies}
-                demoUrl={project.demoUrl}
-                repoUrl={project.repoUrl}
-              />
+              <ProjectCard key={index} {...project} />
             ))}
           </div>
         </section>
@@ -247,11 +239,16 @@ export default function Portfolio() {
           </h2>
 
           <div className="grid md:grid-cols-2 gap-12">
-            <div>
-              <p className="text-muted-foreground mb-6">
-                I'm currently open to freelance opportunities and interesting
-                projects. If you have a project that needs a front-end developer
-                or just want to chat, feel free to reach out!
+            <div className="text-muted-foreground flex-col flex gap-6">
+              <p>
+                {
+                  "프리랜서 작업이나 흥미로운 프로젝트에 함께할 준비가 되어 있습니다!"
+                }
+              </p>
+              <p>
+                {
+                  "프론트엔드 개발자가 필요하시거나 편하게 이야기 나누고 싶다면 언제든지 연락 주세요. 좋은 인연이 되길 기대합니다! 😊"
+                }
               </p>
 
               <div className="space-y-4">
@@ -264,19 +261,6 @@ export default function Portfolio() {
                     {personalInfo.contact.email}
                   </a>
                 </div>
-
-                {/* <div className="flex items-center">
-                  <Linkedin className="h-5 w-5 mr-3 text-primary" />
-                  <a
-                    href={`https://${personalInfo.contact.linkedin}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="hover:text-primary transition-colors"
-                  >
-                    {personalInfo.contact.linkedin}
-                  </a>
-                </div> */}
-
                 <div className="flex items-center">
                   <Github className="h-5 w-5 mr-3 text-primary" />
                   <a
@@ -286,6 +270,17 @@ export default function Portfolio() {
                     className="hover:text-primary transition-colors"
                   >
                     {personalInfo.contact.github}
+                  </a>
+                </div>
+                <div className="flex items-center">
+                  <ExternalLink className="h-5 w-5 mr-3 text-primary" />
+                  <a
+                    href={`https://${personalInfo.contact.blog}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-primary transition-colors"
+                  >
+                    {personalInfo.contact.blog}
                   </a>
                 </div>
               </div>
