@@ -18,7 +18,7 @@ interface ProjectModalProps {
   project: Project;
 }
 
-export function ProjectModal({
+export const ProjectModal = ({
   project: {
     title,
     description,
@@ -30,7 +30,7 @@ export function ProjectModal({
     repoUrl,
     demoUrl,
   },
-}: ProjectModalProps) {
+}: ProjectModalProps) => {
   return (
     <AnimatePresence>
       <Dialog>
@@ -133,4 +133,4 @@ export function ProjectModal({
       </Dialog>
     </AnimatePresence>
   );
-}
+};

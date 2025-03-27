@@ -14,7 +14,7 @@ import {
 import type { Project } from "@/data/projects";
 import { ProjectModal } from "./project-modal";
 
-export function ProjectCard({ ...project }: Project) {
+export const ProjectCard = ({ ...project }: Project) => {
   const { title, description, thumbnail, technologies, demoUrl, repoUrl } =
     project;
 
@@ -67,4 +67,4 @@ export function ProjectCard({ ...project }: Project) {
       </CardFooter>
     </Card>
   );
-}
+};
