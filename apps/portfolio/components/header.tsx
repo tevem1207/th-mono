@@ -4,6 +4,8 @@ import Link from "next/link";
 import navigationItems from "@/data/navigation";
 import personalInfo from "@/data/personal";
 
+import { ThemeToggle } from "./theme";
+
 export const Header = () => {
   return (
     <header className="sticky top-0 z-40 w-full border-b bg-background/95 backdrop-blur">
@@ -25,13 +27,19 @@ export const Header = () => {
           ))}
         </nav>
         <div className="flex items-center gap-2">
-          {personalInfo.contact.map(({ href, label, ContactIcon }) => (
-            <Link href={href} target="_blank" rel="noopener noreferrer">
-              <Button variant="ghost" size="icon">
-                <ContactIcon className="h-5 w-5" />
+          <ThemeToggle />
+          {personalInfo.contact.map(({ type, href, label, ContactIcon }) => (
+            <Button key={type} variant="ghost" size="icon" asChild>
+              <Link
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={label}
+              >
+                <ContactIcon className="h-5 w-5" aria-hidden="true" />
                 <span className="sr-only">{label}</span>
-              </Button>
-            </Link>
+              </Link>
+            </Button>
           ))}
         </div>
       </div>

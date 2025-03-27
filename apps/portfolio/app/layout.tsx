@@ -1,4 +1,7 @@
+import { ThemeProvider } from "@/components";
+
 import type { Metadata } from "next";
+
 import "@repo/ui/globals.css";
 
 export const metadata: Metadata = {
@@ -13,11 +16,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="ko-KR" suppressHydrationWarning>
       <head>
         <link rel="icon" href="/favicon.ico" />
       </head>
-      <body>{children}</body>
+      <body>
+        <ThemeProvider>{children}</ThemeProvider>
+      </body>
     </html>
   );
 }

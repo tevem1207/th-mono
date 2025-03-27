@@ -10,7 +10,7 @@ interface SkillsChartProps {
   isVisible: boolean;
 }
 
-export default function SkillsChart({ category }: SkillsChartProps) {
+export const SkillsChart = ({ category }: SkillsChartProps) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -66,4 +66,4 @@ export default function SkillsChart({ category }: SkillsChartProps) {
       </div>
     </div>
   );
-}
+};

@@ -4,7 +4,7 @@ import { Button } from "@repo/ui";
 import { Moon, Sun } from "@repo/ui/icons";
 import { useState, useEffect } from "react";
 
-export default function ThemeToggle() {
+export const ThemeToggle = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
 
   useEffect(() => {
@@ -42,4 +42,4 @@ export default function ThemeToggle() {
       <span className="sr-only">Toggle theme</span>
     </Button>
   );
-}
+};
