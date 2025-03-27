@@ -1,3 +1,5 @@
+import { Github, LucideIcon, Mail, NotebookPen } from "@repo/ui/icons";
+
 export interface PersonalInfo {
   name: string;
   role: string;
@@ -5,13 +7,16 @@ export interface PersonalInfo {
   bio: {
     paragraphs: string[];
   };
-  contact: {
-    email: string;
-    github: string;
-    blog: string;
-  };
+  contact: ContactItem[];
   avatarUrl: string;
   profileImageUrl: string;
+}
+
+export interface ContactItem {
+  type: "email" | "github" | "blog";
+  label: string;
+  href: string;
+  ContactIcon: LucideIcon;
 }
 
 const personalInfo: PersonalInfo = {
@@ -28,11 +33,26 @@ const personalInfo: PersonalInfo = {
       "저는 개발자들이 더 효율적으로 일할 수 있는 환경을 만들기 위해 아키텍처 설계와 자동화 도구에 관심을 갖고 있습니다. 복잡한 설정 없이 빠르게 기능을 추가하고, 개발자가 비즈니스 로직에 집중할 수 있는 환경을 만들기 위해 고민하고 있습니다.",
     ],
   },
-  contact: {
-    email: "tevem1207@gmail.com",
-    github: "github.com/tevem1207",
-    blog: "velog.io/@tevem1207",
-  },
+  contact: [
+    {
+      type: "email",
+      label: "Email",
+      href: "mailto:tevem1207@gmail.com",
+      ContactIcon: Mail,
+    },
+    {
+      type: "github",
+      label: "GitHub",
+      href: "https://github.com/tevem1207",
+      ContactIcon: Github,
+    },
+    {
+      type: "blog",
+      label: "Blog",
+      href: "https://velog.io/@tevem1207",
+      ContactIcon: NotebookPen,
+    },
+  ],
   avatarUrl: "/avatar.png",
   profileImageUrl: "/android-chrome-512x512.png",
 };
