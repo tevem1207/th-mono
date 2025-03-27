@@ -1,15 +1,14 @@
 import { Github, Mail, ExternalLink } from "@repo/ui/icons";
 import Image from "next/image";
 import Link from "next/link";
-import ProjectCard from "@/components/project-card";
 import SkillBadge from "@/components/skill-badge";
 import { Button } from "@repo/ui";
 
 import personalInfo from "@/data/personal";
 import navigationItems from "@/data/navigation";
 import skillsData from "@/data/skills";
-import projectsData from "@/data/projects";
 import resumeData from "@/data/resume";
+import { Projects } from "@/components/project";
 
 export default function Portfolio() {
   return (
@@ -143,12 +142,7 @@ export default function Portfolio() {
           <h2 className="text-3xl font-bold tracking-tighter mb-8 text-center">
             Project Showcase
           </h2>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {projectsData.map((project, index) => (
-              <ProjectCard key={index} {...project} />
-            ))}
-          </div>
+          <Projects />
         </section>
 
         {/* Resume Section */}

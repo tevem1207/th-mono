@@ -18,24 +18,19 @@ interface ProjectModalProps {
   project: Project;
 }
 
-export default function ProjectModal({ project }: ProjectModalProps) {
-  const additionalImages = [
-    "/placeholder.svg?height=200&width=350",
-    "/placeholder.svg?height=200&width=350",
-  ];
-
-  const challenges = [
-    "Implementing responsive design across all device sizes",
-    "Optimizing performance for large data sets",
-    "Ensuring accessibility compliance",
-  ];
-
-  const solutions = [
-    "Used CSS Grid and Flexbox with custom breakpoints",
-    "Implemented virtualized lists and pagination",
-    "Added ARIA attributes and keyboard navigation",
-  ];
-
+export function ProjectModal({
+  project: {
+    title,
+    description,
+    thumbnail,
+    technologies,
+    solutions,
+    challenges,
+    additionalImages,
+    repoUrl,
+    demoUrl,
+  },
+}: ProjectModalProps) {
   return (
     <AnimatePresence>
       <Dialog>
@@ -52,17 +47,17 @@ export default function ProjectModal({ project }: ProjectModalProps) {
         <DialogContent className="max-h-[90vh] w-full max-w-4xl overflow-auto rounded-lg bg-background p-6 shadow-xl">
           <DialogHeader>
             <DialogTitle className="text-2xl font-bold mb-2">
-              {project.title}
+              {title}
             </DialogTitle>
             <DialogDescription className="text-muted-foreground">
-              {project.description}
+              {description}
             </DialogDescription>
           </DialogHeader>
 
           <div className="relative h-72 w-full mb-6 rounded-lg overflow-hidden">
             <Image
-              src={project.image || "/placeholder.svg"}
-              alt={project.title}
+              src={thumbnail || "/placeholder.svg"}
+              alt={title}
               fill
               className="object-cover"
             />
@@ -72,7 +67,7 @@ export default function ProjectModal({ project }: ProjectModalProps) {
             <div>
               <h3 className="text-lg font-semibold mb-3">Technologies Used</h3>
               <div className="flex flex-wrap gap-2 mb-4">
-                {project.technologies.map((tech) => (
+                {technologies.map((tech) => (
                   <Badge key={tech} variant="secondary">
                     {tech}
                   </Badge>
@@ -83,14 +78,14 @@ export default function ProjectModal({ project }: ProjectModalProps) {
             <div>
               <h3 className="text-lg font-semibold mb-3">Project Gallery</h3>
               <div className="grid grid-cols-2 gap-2">
-                {additionalImages.map((img, index) => (
+                {additionalImages?.map((img, index) => (
                   <div
                     key={index}
                     className="relative h-[100px] rounded-md overflow-hidden"
                   >
                     <Image
                       src={img || "/placeholder.svg"}
-                      alt={`${project.title} screenshot ${index + 1}`}
+                      alt={`${title} screenshot ${index + 1}`}
                       fill
                       className="object-cover"
                     />
@@ -104,7 +99,7 @@ export default function ProjectModal({ project }: ProjectModalProps) {
             <div>
               <h3 className="text-lg font-semibold mb-3">Challenges</h3>
               <ul className="list-disc pl-5 space-y-1 text-muted-foreground">
-                {challenges.map((challenge, index) => (
+                {challenges?.map((challenge, index) => (
                   <li key={index}>{challenge}</li>
                 ))}
               </ul>
@@ -113,7 +108,7 @@ export default function ProjectModal({ project }: ProjectModalProps) {
             <div>
               <h3 className="text-lg font-semibold mb-3">Solutions</h3>
               <ul className="list-disc pl-5 space-y-1 text-muted-foreground">
-                {solutions.map((solution, index) => (
+                {solutions?.map((solution, index) => (
                   <li key={index}>{solution}</li>
                 ))}
               </ul>
@@ -122,21 +117,13 @@ export default function ProjectModal({ project }: ProjectModalProps) {
 
           <DialogFooter>
             <Button asChild variant="outline">
-              <a
-                href={project.repoUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
+              <a href={repoUrl} target="_blank" rel="noopener noreferrer">
                 <Github className="mr-2 h-4 w-4" />
                 View Code
               </a>
             </Button>
             <Button asChild>
-              <a
-                href={project.demoUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
+              <a href={demoUrl} target="_blank" rel="noopener noreferrer">
                 <ExternalLink className="mr-2 h-4 w-4" />
                 Live Demo
               </a>

@@ -12,9 +12,9 @@ import {
   CardTitle,
 } from "@repo/ui";
 import type { Project } from "@/data/projects";
-import ProjectModal from "./project-modal";
+import { ProjectModal } from "./project-modal";
 
-export default function ProjectCard({ ...project }: Project) {
+export function ProjectCard({ ...project }: Project) {
   const { title, description, thumbnail, technologies, demoUrl, repoUrl } =
     project;
 
