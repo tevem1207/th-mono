@@ -1,7 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { Badge } from "@repo/ui";
+import { motion } from "framer-motion";
 
 interface AnimatedSkillBadgeProps {
   name: string;

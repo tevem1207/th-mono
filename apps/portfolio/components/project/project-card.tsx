@@ -1,6 +1,3 @@
-import Image from "next/image";
-import Link from "next/link";
-import { ExternalLink, Github } from "@repo/ui/icons";
 import {
   Badge,
   Button,
@@ -11,7 +8,12 @@ import {
   CardHeader,
   CardTitle,
 } from "@repo/ui";
+import { ExternalLink, Github } from "@repo/ui/icons";
+import Image from "next/image";
+import Link from "next/link";
+
 import type { Project } from "@/data/projects";
+
 import { ProjectModal } from "./project-modal";
 
 export const ProjectCard = ({ ...project }: Project) => {

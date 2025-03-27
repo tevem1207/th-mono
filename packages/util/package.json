@@ -1,6 +1,7 @@
 {
   "name": "@repo/util",
   "version": "0.0.0",
+  "type": "module",
   "private": true,
   "scripts": {
     "lint": "eslint ."

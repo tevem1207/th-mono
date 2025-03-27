@@ -1,11 +1,12 @@
 "use client";
 
-import type React from "react";
 
-import { useState } from "react";
-import { motion } from "framer-motion";
 import { Button } from "@repo/ui";
 import { CheckCircle2 } from "@repo/ui/icons";
+import { motion } from "framer-motion";
+import { useState } from "react";
+
+import type React from "react";
 
 export default function ContactForm() {
   const [formState, setFormState] = useState({

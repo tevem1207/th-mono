@@ -1,14 +1,14 @@
+import { Button } from "@repo/ui";
 import { Github, Mail, ExternalLink } from "@repo/ui/icons";
 import Image from "next/image";
 import Link from "next/link";
-import SkillBadge from "@/components/skill-badge";
-import { Button } from "@repo/ui";
 
-import personalInfo from "@/data/personal";
-import navigationItems from "@/data/navigation";
-import skillsData from "@/data/skills";
-import resumeData from "@/data/resume";
 import { Projects } from "@/components/project";
+import SkillBadge from "@/components/skill-badge";
+import navigationItems from "@/data/navigation";
+import personalInfo from "@/data/personal";
+import resumeData from "@/data/resume";
+import skillsData from "@/data/skills";
 
 export default function Portfolio() {
   return (

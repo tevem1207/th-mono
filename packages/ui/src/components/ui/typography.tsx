@@ -1,11 +1,11 @@
-import { ComponentPropsWithoutRef } from "react";
 import { cn } from "@repo/ui/lib/utils";
+import { ComponentPropsWithoutRef } from "react";
 
-export function TypographyH1({
+export const TypographyH1 = ({
   children,
   className,
   ...props
-}: ComponentPropsWithoutRef<"h1">) {
+}: ComponentPropsWithoutRef<"h1">) => {
   return (
     <h1
       className={cn(
@@ -19,11 +19,11 @@ export function TypographyH1({
   );
 }
 
-export function TypographyH2({
+export const TypographyH2 = ({
   children,
   className,
   ...props
-}: ComponentPropsWithoutRef<"h2">) {
+}: ComponentPropsWithoutRef<"h2">) => {
   return (
     <h2
       className={cn(
@@ -37,11 +37,11 @@ export function TypographyH2({
   );
 }
 
-export function TypographyH3({
+export const TypographyH3 = ({
   children,
   className,
   ...props
-}: ComponentPropsWithoutRef<"h3">) {
+}: ComponentPropsWithoutRef<"h3">) => {
   return (
     <h3
       className={cn(
@@ -55,11 +55,11 @@ export function TypographyH3({
   );
 }
 
-export function TypographyH4({
+export const TypographyH4 = ({
   children,
   className,
   ...props
-}: ComponentPropsWithoutRef<"h4">) {
+}: ComponentPropsWithoutRef<"h4">) => {
   return (
     <h4
       className={cn(
@@ -73,11 +73,11 @@ export function TypographyH4({
   );
 }
 
-export function TypographyP({
+export const TypographyP = ({
   children,
   className,
   ...props
-}: ComponentPropsWithoutRef<"p">) {
+}: ComponentPropsWithoutRef<"p">) => {
   return (
     <p
       className={cn("leading-7 [&:not(:first-child)]:mt-6", className)}
@@ -88,11 +88,11 @@ export function TypographyP({
   );
 }
 
-export function TypographyBlockquote({
+export const TypographyBlockquote = ({
   children,
   className,
   ...props
-}: ComponentPropsWithoutRef<"blockquote">) {
+}: ComponentPropsWithoutRef<"blockquote">) => {
   return (
     <blockquote
       className={cn("mt-6 border-l-2 pl-6 italic", className)}
@@ -103,11 +103,11 @@ export function TypographyBlockquote({
   );
 }
 
-export function TypographyInlineCode({
+export const TypographyInlineCode = ({
   children,
   className,
   ...props
-}: ComponentPropsWithoutRef<"code">) {
+}: ComponentPropsWithoutRef<"code">) => {
   return (
     <code
       className={cn(

@@ -1,5 +1,3 @@
-import js from "@eslint/js";
-import eslintConfigPrettier from "eslint-config-prettier";
 import tseslint from "typescript-eslint";
 import pluginReactHooks from "eslint-plugin-react-hooks";
 import pluginReact from "eslint-plugin-react";
@@ -14,9 +12,6 @@ import { config as baseConfig } from "./base.js";
  * */
 export const nextJsConfig = [
   ...baseConfig,
-  js.configs.recommended,
-  eslintConfigPrettier,
-  ...tseslint.configs.recommended,
   {
     ...pluginReact.configs.flat.recommended,
     languageOptions: {
@@ -29,10 +24,23 @@ export const nextJsConfig = [
   {
     plugins: {
       "@next/next": pluginNext,
+      parser: tseslint.parser,
     },
     rules: {
       ...pluginNext.configs.recommended.rules,
       ...pluginNext.configs["core-web-vitals"].rules,
+      "react/function-component-definition": [
+        "error",
+        {
+          namedComponents: "arrow-function",
+        },
+      ],
+    },
+  },
+  {
+    files: ["**/app/**/layout.tsx", "**/app/**/page.tsx"],
+    rules: {
+      "react/function-component-definition": "off",
     },
   },
   {

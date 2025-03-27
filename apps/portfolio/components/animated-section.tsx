@@ -1,7 +1,7 @@
 "use client";
 
-import { type ReactNode, useRef } from "react";
 import { HTMLMotionProps, motion, useInView } from "framer-motion";
+import { type ReactNode, useRef } from "react";
 
 interface AnimatedSectionProps extends HTMLMotionProps<"section"> {
   children: ReactNode;

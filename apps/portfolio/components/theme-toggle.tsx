@@ -1,8 +1,8 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { Moon, Sun } from "@repo/ui/icons";
 import { Button } from "@repo/ui";
+import { Moon, Sun } from "@repo/ui/icons";
+import { useState, useEffect } from "react";
 
 export default function ThemeToggle() {
   const [isDarkMode, setIsDarkMode] = useState(false);

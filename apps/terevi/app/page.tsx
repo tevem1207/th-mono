@@ -15,8 +15,9 @@ import {
   TypographyH2,
   TypographyP,
 } from "@repo/ui";
-import { Section } from "../components";
 import { cn } from "@repo/ui/lib/utils";
+
+import { Section } from "../components";
 
 export default function Page() {
   return (

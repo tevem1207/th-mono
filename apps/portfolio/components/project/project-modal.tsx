@@ -1,8 +1,4 @@
 "use client";
-import Image from "next/image";
-import { ExternalLink, Github, Info } from "@repo/ui/icons";
-import { AnimatePresence } from "framer-motion";
-import type { Project } from "@/data/projects";
 import {
   Badge,
   Button,
@@ -14,6 +10,12 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@repo/ui";
+import { ExternalLink, Github, Info } from "@repo/ui/icons";
+import { AnimatePresence } from "framer-motion";
+import Image from "next/image";
+
+import type { Project } from "@/data/projects";
+
 interface ProjectModalProps {
   project: Project;
 }

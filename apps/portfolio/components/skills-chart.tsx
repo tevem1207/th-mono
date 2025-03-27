@@ -1,7 +1,8 @@
 "use client";
 
-import { useRef, useEffect } from "react";
 import Chart from "chart.js/auto";
+import { useRef, useEffect } from "react";
+
 import type { SkillCategory } from "@/data/skills";
 
 interface SkillsChartProps {

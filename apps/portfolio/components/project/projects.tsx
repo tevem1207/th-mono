@@ -1,4 +1,5 @@
 import projectsData from "@/data/projects";
+
 import { ProjectCard } from "./project-card";
 
 export const Projects = () => {

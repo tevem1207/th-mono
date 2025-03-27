@@ -1,8 +1,9 @@
-import navigationItems from "@/data/navigation";
-import personalInfo from "@/data/personal";
 import { Button } from "@repo/ui";
 import { Github, Mail } from "@repo/ui/icons";
 import Link from "next/link";
+
+import navigationItems from "@/data/navigation";
+import personalInfo from "@/data/personal";
 
 <header className="sticky top-0 z-40 w-full border-b bg-background/95 backdrop-blur">
   <div className="container flex h-16 items-center justify-between">
