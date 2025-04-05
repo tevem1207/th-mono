@@ -30,18 +30,18 @@ export const Avatar3D = () => {
       const rawX = ((y - centerY) / 10) * -1;
       const rawY = (x - centerX) / 10;
 
-      const clampedX = clamp(rawX, -20, 20);
-      const clampedY = clamp(rawY, -20, 20);
+      const clampedX = clamp(rawX, -30, 30);
+      const clampedY = clamp(rawY, -30, 30);
 
       animate(rotateX, clampedX, {
         type: "spring",
-        stiffness: 100,
-        damping: 15,
+        stiffness: 150,
+        damping: 12,
       });
       animate(rotateY, clampedY, {
         type: "spring",
-        stiffness: 100,
-        damping: 15,
+        stiffness: 150,
+        damping: 12,
       });
     };
     const handleClick = async () => {
