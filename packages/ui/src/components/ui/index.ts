@@ -7,3 +7,8 @@ export * from "./typography";
 export * from "./label";
 export * from "./card";
 export * from "./badge";
+export * from "./tabs";
+export * from "./avatar";
+export * from "./input";
+export * from "./tooltip";
+export * from "./textarea";
