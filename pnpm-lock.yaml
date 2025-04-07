@@ -173,6 +173,12 @@ importers:
       '@repo/ui':
         specifier: workspace:*
         version: link:../../packages/ui
+      '@repo/util':
+        specifier: workspace:*
+        version: link:../../packages/util
+      es-hangul:
+        specifier: ^2.2.3
+        version: 2.3.1
       next:
         specifier: ^15.1.0
         version: 15.2.0(@babel/core@7.26.10)(@opentelemetry/api@1.9.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.86.1)
