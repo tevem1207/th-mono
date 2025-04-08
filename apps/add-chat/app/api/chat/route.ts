@@ -1,14 +1,14 @@
+import { groq } from "@ai-sdk/groq";
 import { CoreMessage, streamText } from "ai";
 import { NextRequest } from "next/server";
 
-import { ollama } from "./ollama";
+export const maxDuration = 30;
 
 export async function POST(req: NextRequest) {
   const { messages }: { messages: CoreMessage[] } = await req.json();
-  console.log(messages);
+
   const result = streamText({
-    model: ollama("gemma3:1b"),
-    system: "You are a helpful assistant.",
+    model: groq("llama-3.3-70b-versatile"),
     messages,
   });
 

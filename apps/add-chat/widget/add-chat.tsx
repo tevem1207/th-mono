@@ -22,17 +22,18 @@ import { ChatLoadingBubble } from "./chat-loading-bubble";
 import { MessageBubble } from "./message-bubble";
 
 export interface AddChatProps {
-  title?: string;
+  title: string;
+  api: string;
 }
 
-export const AddChat = ({ title }: AddChatProps) => {
+export const AddChat = ({ title, api }: AddChatProps) => {
   const [open, setOpen] = useState(false);
   const [showScrollToBottom, setShowScrollToBottom] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
   const [isAtBottom, setIsAtBottom] = useState(true);
 
   const { messages, input, handleSubmit, handleInputChange, status } = useChat({
-    api: "api/chat",
+    api,
   });
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
@@ -76,7 +77,7 @@ export const AddChat = ({ title }: AddChatProps) => {
         <div className="flex gap-2 items-end">
           <Bot className="size-6 text-primary" />
           <h1 className="text-xl font-semibold text-foreground">
-            안녕하세요, 아디에요!
+            안녕하세요, 애디에요!
           </h1>
         </div>
       </MessageBubble>
