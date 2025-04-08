@@ -1,3 +1,5 @@
+import Script from "next/script";
+
 import { ThemeProvider } from "@/components";
 
 import type { Metadata } from "next";
@@ -22,6 +24,12 @@ export default function RootLayout({
       </head>
       <body>
         <ThemeProvider>{children}</ThemeProvider>
+        <Script
+          src="https://add-chat.vercel.app/widget/main.js"
+          data-title="황태희"
+          data-api="/api/chat"
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   );
