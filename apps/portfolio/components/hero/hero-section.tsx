@@ -4,10 +4,13 @@ import Link from "next/link";
 import React from "react";
 
 import personalInfo from "@/data/personal";
+import statsData from "@/data/stats";
+
+import { StatsCounter } from "./stats-counter";
 
 export const HeroSection = () => {
   return (
-    <section className="py-12 md:py-24 lg:py-32 flex flex-col items-center text-center">
+    <section className="h-[calc(100svh-6rem)] min-h-[550px] flex flex-col justify-center items-center text-center gap-1">
       <div className="relative w-32 h-32 mb-8 rounded-full overflow-hidden border-4 border-primary-foreground">
         <Image
           src={personalInfo.avatarUrl || "https://placehold.co/128"}
@@ -16,9 +19,15 @@ export const HeroSection = () => {
           className="object-cover"
         />
       </div>
-      <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter mb-4">
-        {personalInfo.name}
-      </h1>
+      <div className="flex gap-1 items-baseline justify-center">
+        <h1 className="text-2xl md:text-3xl font-bold tracking-tighter mb-4">
+          {personalInfo.role}
+        </h1>
+        <p className="text-xl md:text-2xl text-muted-foreground mb-4">
+          , {personalInfo.name}입니다.
+        </p>
+      </div>
+
       <p className="text-xl md:text-xl text-muted-foreground mb-8 max-w-[700px]">
         {personalInfo.tagline}
       </p>
@@ -29,6 +38,9 @@ export const HeroSection = () => {
         <Button asChild variant="outline" size="lg">
           <Link href="#contact">Contact Me</Link>
         </Button>
+      </div>
+      <div className="mt-12 border-t">
+        <StatsCounter stats={statsData} />
       </div>
     </section>
   );

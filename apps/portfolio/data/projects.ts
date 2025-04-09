@@ -5,6 +5,7 @@ export interface Project {
   description: string;
   organization: string;
   startDate: string;
+  role: ProjectRole[];
   endDate?: string;
   thumbnail?: string;
   technologies: string[];
@@ -15,12 +16,15 @@ export interface Project {
   solutions?: string[];
 }
 
+export type ProjectRole = "frontend-developer" | "backend-developer";
+
 const projectsData: Project[] = [
   {
     title: "TypeBoy",
     description:
       "Next.js를 활용해 개발한 풀스택 프로젝트로, 사용자 입력을 통해 타자 연습을 진행할 수 있는 플랫폼입니다. Prisma를 이용해 데이터베이스를 구축하고, Vercel로 배포했습니다.",
     organization: "개인 프로젝트",
+    role: ["frontend-developer", "backend-developer"],
     startDate: "2024.01",
     endDate: "2024.03",
     thumbnail: generateThumbnailPath({
@@ -55,6 +59,7 @@ const projectsData: Project[] = [
     description:
       "티맥스 클라우드에서 진행한 프로젝트로, 다양한 리소스를 통합 관리하는 UI 개발에 참여했습니다. Monorepo 환경을 구축하고, 공통 UI 컴포넌트를 개발하여 팀 간 협업을 원활하게 만들었습니다.",
     organization: "티맥스 클라우드",
+    role: ["frontend-developer"],
     startDate: "2024.02",
     endDate: "2024.11",
     thumbnail: generateThumbnailPath({
@@ -93,6 +98,7 @@ const projectsData: Project[] = [
     description:
       "티맥스 클라우드에서 진행한 프로젝트로, VM 및 HostOS 관련 UI를 담당했습니다. API와 연동해 데이터 시각화 및 관리 기능을 개발했으며, Message Listener를 통해 비동기 통신을 최적화했습니다.",
     organization: "티맥스 클라우드",
+    role: ["frontend-developer"],
     startDate: "2023.09",
     endDate: "2024.02",
     thumbnail: generateThumbnailPath({
@@ -120,6 +126,7 @@ const projectsData: Project[] = [
     description:
       "지도 기반 실시간 채팅 서비스입니다. WebSocket의 클라이언트 코드 구현, 지도 API를 이용한 채팅 오버레이와 마커 표시, 모바일 환경을 고려한 반응형 웹 설계 및 개발을 맡았습니다. PWA로 구현하여 데스크탑과 모바일 환경에 모두 최적화된 서비스를 제공했습니다.",
     organization: "삼성 청년 SW 아카데미",
+    role: ["frontend-developer"],
     startDate: "2022.10",
     endDate: "2022.11",
     thumbnail: generateThumbnailPath({
@@ -151,6 +158,7 @@ const projectsData: Project[] = [
     description:
       "빅데이터를 활용한 전통주 추천 서비스입니다. Vue3를 이용하여 취향 설문 페이지를 구현하고, 데이터 분석을 위한 크롤링과 Python 개발을 담당하였습니다. 전통주 조회 페이지 사용자의 설정 값을 쿼리 스트링으로 저장하여 뒤로가기 시에도 설정이 유지되도록 구현했습니다.",
     organization: "삼성 청년 SW 아카데미",
+    role: ["frontend-developer", "backend-developer"],
     startDate: "2022.08",
     endDate: "2022.10",
     thumbnail: generateThumbnailPath({
@@ -180,6 +188,7 @@ const projectsData: Project[] = [
     description:
       "WebRTC를 이용한 화상 보드 게임 서비스입니다. Vue와 Element Plus 라이브러리를 이용한 프론트 엔드를 담당하였습니다.",
     organization: "삼성 청년 SW 아카데미",
+    role: ["frontend-developer"],
     startDate: "2022.07",
     endDate: "2022.08",
     thumbnail: generateThumbnailPath({

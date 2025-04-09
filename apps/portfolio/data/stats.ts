@@ -7,21 +7,23 @@ export interface Stat {
 const statsData: Stat[] = [
   {
     value: 1,
-    label: "Years Experience",
-    suffix: "+",
+    label: "경력",
+    suffix: "년+",
   },
   {
-    value: 8,
-    label: "Projects Completed",
+    value: 2,
+    label: "실무 프로젝트",
+    suffix: "건",
   },
   {
-    value: 15,
-    label: "Happy Clients",
+    value: 4,
+    label: "사이드 프로젝트",
+    suffix: "건+",
   },
   {
-    value: 99,
-    label: "Success Rate",
-    suffix: "%",
+    value: 2,
+    label: "오픈소스 기여",
+    suffix: "회",
   },
 ];
 
