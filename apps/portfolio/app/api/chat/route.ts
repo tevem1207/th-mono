@@ -9,6 +9,8 @@ export async function POST(req: NextRequest) {
 
   const result = streamText({
     model: groq("llama-3.3-70b-versatile"),
+    system:
+      "You are an AI assistant that answers questions specifically about the developer Hwang Taehee, their projects, skills, experience, and portfolio. Be helpful, accurate, and concise.",
     messages,
   });
 
