@@ -3,7 +3,7 @@ import { Github, LucideIcon, Mail, NotebookPen } from "@repo/ui/icons";
 export interface PersonalInfo {
   name: string;
   role: string;
-  tagline: string;
+  tagline: string[];
   bio: {
     paragraphs: string[];
   };
@@ -22,7 +22,7 @@ export interface ContactItem {
 const personalInfo: PersonalInfo = {
   name: "황태희",
   role: "JavaScript 풀스택 개발자",
-  tagline: "🍔 햄버거에 진심 🤖 AI랑 놀기 좋아함 ☁️ 클라우드로 확장하는 중",
+  tagline: ["🍔 햄버거에 진심", "🤖 AI랑 노는 중", "☁️ 클라우드로 확장하는 중"],
   bio: {
     paragraphs: [
       "안녕하세요, 저는 사용자 중심의 웹 애플리케이션을 개발하는 풀스택 개발자입니다.",
