@@ -19,18 +19,18 @@ export const HeroSection = () => {
           className="object-cover"
         />
       </div>
-      <div className="flex gap-1 items-baseline justify-center">
-        <h1 className="text-2xl md:text-3xl font-bold tracking-tighter mb-4">
+      <div className="flex flex-wrap gap-1 items-baseline justify-center">
+        <h1 className="text-2xl md:text-3xl font-bold tracking-tighter mb-4 after:content-[',']">
           {personalInfo.role}
         </h1>
         <p className="text-xl md:text-2xl text-muted-foreground mb-4">
-          , {personalInfo.name}입니다.
+          {personalInfo.name}입니다.
         </p>
       </div>
 
       <div className="text-muted-foreground mb-8 max-w-[700px] flex justify-center flex-col gap-1">
         <span>저는 지금</span>
-        <div className="flex items-center gap-2">
+        <div className="flex flex-wrap justify-center items-center gap-2">
           {personalInfo.tagline.map((tag, index) => (
             <span
               key={index}

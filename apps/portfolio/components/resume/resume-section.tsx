@@ -10,7 +10,7 @@ import { ExperienceTimeline } from "./experience-timeline";
 export const ResumeSection = () => {
   return (
     <section id="resume" className="py-12 md:py-24 border-t">
-      <div className="flex justify-between items-center mb-8">
+      <div className="flex flex-wrap justify-between items-center mb-8 gap-4">
         <h2 className="text-3xl font-bold tracking-tighter">
           Resume & Experience
         </h2>
