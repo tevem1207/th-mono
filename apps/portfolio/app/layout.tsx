@@ -1,3 +1,4 @@
+import { Analytics } from "@vercel/analytics/next";
 import Script from "next/script";
 
 import { ThemeProvider } from "@/components";
@@ -30,6 +31,7 @@ export default function RootLayout({
           data-api="/api/chat"
           strategy="afterInteractive"
         />
+        <Analytics />
       </body>
     </html>
   );
