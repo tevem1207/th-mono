@@ -1,7 +1,8 @@
-import { Button } from "@repo/ui";
 import React from "react";
 
 import personalInfo from "@/data/personal";
+
+import { ContactForm } from "./contact-form";
 
 export const ContactSection = () => {
   return (
@@ -40,61 +41,7 @@ export const ContactSection = () => {
             })}
           </div>
         </div>
-        <form className="space-y-4">
-          <div className="grid grid-cols-2 gap-4">
-            <div className="space-y-2">
-              <label htmlFor="name" className="text-sm font-medium">
-                Name
-              </label>
-              <input
-                id="name"
-                type="text"
-                className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-                placeholder="Your name"
-              />
-            </div>
-
-            <div className="space-y-2">
-              <label htmlFor="email" className="text-sm font-medium">
-                Email
-              </label>
-              <input
-                id="email"
-                type="email"
-                className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-                placeholder="Your email"
-              />
-            </div>
-          </div>
-
-          <div className="space-y-2">
-            <label htmlFor="subject" className="text-sm font-medium">
-              Subject
-            </label>
-            <input
-              id="subject"
-              type="text"
-              className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-              placeholder="Subject"
-            />
-          </div>
-
-          <div className="space-y-2">
-            <label htmlFor="message" className="text-sm font-medium">
-              Message
-            </label>
-            <textarea
-              id="message"
-              rows={5}
-              className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-              placeholder="Your message"
-            />
-          </div>
-
-          <Button type="submit" className="w-full">
-            Send Message
-          </Button>
-        </form>
+        <ContactForm />
       </div>
     </section>
   );

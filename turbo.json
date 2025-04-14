@@ -11,6 +11,9 @@
     "typeboy#build": {
       "env": ["DATABASE_*", "AUTH_*", "TEST_USER_ID"]
     },
+    "portfolio#lint": {
+      "env": ["NOTION_*"]
+    },
     "lint": {
       "dependsOn": ["^lint"]
     },
