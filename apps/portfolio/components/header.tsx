@@ -4,6 +4,7 @@ import Link from "next/link";
 import navigationItems from "@/data/navigation";
 import personalInfo from "@/data/personal";
 
+import { MobileMenu } from "./mobile-menu";
 import { ThemeToggle } from "./theme";
 
 export const Header = () => {
@@ -28,6 +29,7 @@ export const Header = () => {
         </nav>
         <div className="flex items-center gap-2">
           <ThemeToggle />
+          <MobileMenu />
           {personalInfo.contact.map(({ type, href, label, ContactIcon }) => (
             <Button key={type} variant="ghost" size="icon" asChild>
               <Link

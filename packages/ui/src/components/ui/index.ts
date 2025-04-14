@@ -12,3 +12,4 @@ export * from "./avatar";
 export * from "./input";
 export * from "./tooltip";
 export * from "./textarea";
+export * from "./sheet";
