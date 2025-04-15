@@ -3,6 +3,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@repo/ui";
 import { useToast } from "@repo/ui/hooks";
+import { LoaderCircle } from "@repo/ui/icons";
 import { cn } from "@repo/ui/lib/utils";
 import React, {
   InputHTMLAttributes,
@@ -119,7 +120,14 @@ export const ContactForm = () => {
       </div>
 
       <Button type="submit" className="w-full" disabled={isSubmitting}>
-        {isSubmitting ? "Sending..." : "Send Message"}
+        {isSubmitting ? (
+          <>
+            <LoaderCircle className="animate-spin" />
+            Sending...
+          </>
+        ) : (
+          "Send Message"
+        )}
       </Button>
     </form>
   );
