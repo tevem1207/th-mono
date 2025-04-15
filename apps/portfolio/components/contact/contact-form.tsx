@@ -36,7 +36,9 @@ export const ContactForm = () => {
     });
 
     if (!response.ok) {
-      console.error("Error submitting form");
+      if (process.env.NODE_ENV === "development") {
+        console.error("Error submitting form", errors);
+      }
       return;
     }
     toast({
@@ -47,7 +49,9 @@ export const ContactForm = () => {
     reset();
   };
   const onError = (errors: FieldErrors<ContactFormValues>) => {
-    console.error("Error submitting form", errors);
+    if (process.env.NODE_ENV === "development") {
+      console.error("Error submitting form", errors);
+    }
     toast({
       title: "Error sending message",
       description: "Please check your input and try again.",
