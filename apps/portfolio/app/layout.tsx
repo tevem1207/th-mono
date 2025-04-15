@@ -1,3 +1,4 @@
+import { Toaster } from "@repo/ui";
 import { Analytics } from "@vercel/analytics/next";
 import Script from "next/script";
 
@@ -31,7 +32,8 @@ export default function RootLayout({
           data-api="/api/chat"
           strategy="afterInteractive"
         />
-        <Analytics />
+        <Toaster />
+        {process.env.NODE_ENV === "production" && <Analytics />}
       </body>
     </html>
   );

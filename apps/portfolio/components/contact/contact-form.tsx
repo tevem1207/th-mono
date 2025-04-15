@@ -2,6 +2,7 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@repo/ui";
+import { useToast } from "@repo/ui/hooks";
 import { cn } from "@repo/ui/lib/utils";
 import React, {
   InputHTMLAttributes,
@@ -13,6 +14,8 @@ import { FieldErrors, useForm } from "react-hook-form";
 import { ContactFormValues, ContactSchema } from "@/lib/schemas";
 
 export const ContactForm = () => {
+  const { toast } = useToast();
+
   const {
     register,
     handleSubmit,
@@ -35,13 +38,20 @@ export const ContactForm = () => {
       console.error("Error submitting form");
       return;
     }
+    toast({
+      title: "Message sent successfully!",
+      description: "I will get back to you soon.",
+    });
 
-    alert("Message sent successfully!");
     reset();
   };
   const onError = (errors: FieldErrors<ContactFormValues>) => {
-    console.error(errors);
-    alert("Please fill out all required fields.");
+    console.error("Error submitting form", errors);
+    toast({
+      title: "Error sending message",
+      description: "Please check your input and try again.",
+      variant: "destructive",
+    });
   };
 
   return (
