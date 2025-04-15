@@ -19,7 +19,7 @@ export const ContactForm = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
     reset,
   } = useForm<ContactFormValues>({
     resolver: zodResolver(ContactSchema),
@@ -64,7 +64,7 @@ export const ContactForm = () => {
           <ContactFormInput
             id="name"
             type="text"
-            placeholder="Your name"
+            placeholder="Your Name"
             {...register("name")}
           />
           {errors.name && (
@@ -79,7 +79,7 @@ export const ContactForm = () => {
           <ContactFormInput
             id="email"
             type="text"
-            placeholder="Your name"
+            placeholder="Your Email"
             {...register("email")}
           />
           {errors.email && (
@@ -95,7 +95,7 @@ export const ContactForm = () => {
         <ContactFormInput
           id="subject"
           type="text"
-          placeholder="Your name"
+          placeholder="Your Subject"
           {...register("subject")}
         />
         {errors.subject && (
@@ -118,8 +118,8 @@ export const ContactForm = () => {
         )}
       </div>
 
-      <Button type="submit" className="w-full">
-        Send Message
+      <Button type="submit" className="w-full" disabled={isSubmitting}>
+        {isSubmitting ? "Sending..." : "Send Message"}
       </Button>
     </form>
   );
