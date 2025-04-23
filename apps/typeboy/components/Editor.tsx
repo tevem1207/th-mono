@@ -1,5 +1,9 @@
 "use client";
 
+import { Memo } from "@prisma/client";
+import { cn } from "@repo/ui/lib/utils";
+import { formatNumber } from "@repo/util";
+import { useMutation } from "@tanstack/react-query";
 import {
   ComponentPropsWithoutRef,
   FocusEventHandler,
@@ -8,12 +12,10 @@ import {
   useRef,
   useMemo,
 } from "react";
-import { useTypingHook } from "../hooks";
-import { formatNumber } from "@repo/util";
-import { cn } from "@repo/ui/lib/utils";
-import { useMutation } from "@tanstack/react-query";
-import { Memo } from "@prisma/client";
+
 import { submitMemo } from "@/utils/api";
+
+import { useTypingHook } from "../hooks";
 
 export const Editor = ({ data }: { data?: Memo }) => {
   const memoizedText = useMemo(() => data?.text.split(""), [data?.text]);

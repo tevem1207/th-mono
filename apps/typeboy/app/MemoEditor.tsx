@@ -1,7 +1,8 @@
 "use client";
-import { fetchRandomMemos } from "@/utils/api";
-import { Editor } from "@/components";
 import { useQuery } from "@tanstack/react-query";
+
+import { Editor } from "@/components";
+import { fetchRandomMemos } from "@/utils/api";
 
 export const MemoEditor = () => {
   const { data } = useQuery({

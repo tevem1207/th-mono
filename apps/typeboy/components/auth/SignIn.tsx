@@ -1,7 +1,8 @@
-import { signIn } from "@/auth";
 import { Button } from "@repo/ui";
 
-export function SignIn() {
+import { signIn } from "@/auth";
+
+export const SignIn = () => {
   return (
     <form
       action={async () => {

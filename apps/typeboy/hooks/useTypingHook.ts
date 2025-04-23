@@ -1,5 +1,5 @@
-import { ChangeEventHandler, useEffect, useMemo, useState } from "react";
 import { disassemble } from "es-hangul";
+import { ChangeEventHandler, useEffect, useMemo, useState } from "react";
 
 export const useTypingHook = (text?: string) => {
   const [inputText, setInputText] = useState("");

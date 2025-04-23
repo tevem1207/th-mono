@@ -1,4 +1,5 @@
 import { MemoExtended, PaginationResult } from "@/types";
+
 import { fetcher } from ".";
 
 export const fetchMemos = async (): Promise<PaginationResult<MemoExtended>> => {

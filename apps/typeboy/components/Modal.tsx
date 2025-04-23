@@ -3,13 +3,13 @@
 import { Dialog, DialogContent, DialogTitle } from "@repo/ui";
 import { useRouter } from "next/navigation";
 
-export function Modal({
+export const Modal = ({
   title,
   children,
 }: {
   title: string;
   children: React.ReactNode;
-}) {
+}) => {
   const router = useRouter();
 
   const handleOpenChange = () => {

@@ -1,7 +1,8 @@
-import { signOut } from "@/auth";
 import { Button } from "@repo/ui";
 
-export function SignOut() {
+import { signOut } from "@/auth";
+
+export const SignOut = () => {
   return (
     <form
       action={async () => {
@@ -12,4 +13,4 @@ export function SignOut() {
       <Button type="submit">Sign Out</Button>
     </form>
   );
-}
+};

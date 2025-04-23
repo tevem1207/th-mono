@@ -1,8 +1,9 @@
 "use client";
-import { fetchMemos } from "@/utils/api";
-import { MemoItem, MemoList } from "@/components";
 import { useQuery } from "@tanstack/react-query";
 import { useSession } from "next-auth/react";
+
+import { MemoItem, MemoList } from "@/components";
+import { fetchMemos } from "@/utils/api";
 
 export default function Page() {
   const { data, isFetched } = useQuery({

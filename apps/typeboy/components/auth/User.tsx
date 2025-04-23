@@ -1,6 +1,6 @@
 import { auth } from "@/auth";
 
-export default async function UserAvatar() {
+export const UserAvatar = async () => {
   const session = await auth();
 
   if (!session?.user) return null;
@@ -11,4 +11,4 @@ export default async function UserAvatar() {
       {/* <Image src={session.user.image} alt="User Avatar" /> */}
     </div>
   );
-}
+};

@@ -1,9 +1,10 @@
-import { MemoExtended } from "@/types";
 import { Table, TableBody, TableCell, TableRow } from "@repo/ui";
 import { Heart, MessageCircle } from "@repo/ui/icons";
 import { cn } from "@repo/ui/lib/utils";
 import Link from "next/link";
 import { HTMLAttributes, ReactNode } from "react";
+
+import { MemoExtended } from "@/types";
 
 export const MemoList = ({ children }: { children: ReactNode }) => {
   return (

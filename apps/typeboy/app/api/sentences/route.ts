@@ -1,5 +1,6 @@
-import { prisma } from "@/lib";
 import { Memo, Prisma } from "@prisma/client";
+
+import { prisma } from "@/lib";
 
 export async function GET(request: Request) {
   const url = new URL(request.url);
