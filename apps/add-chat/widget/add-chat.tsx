@@ -34,6 +34,7 @@ export const AddChat = ({ title, api }: AddChatProps) => {
 
   const { messages, input, handleSubmit, handleInputChange, status } = useChat({
     api,
+    maxSteps: 3,
   });
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
