@@ -12,7 +12,7 @@
       "env": ["DATABASE_*", "AUTH_*", "TEST_USER_ID"]
     },
     "portfolio#lint": {
-      "env": ["DATABASE_*", "NOTION_*"]
+      "env": ["PORTFOLIO_DATABASE_*", "NOTION_*"]
     },
     "lint": {
       "dependsOn": ["^lint"]
