@@ -1,5 +1,4 @@
-import { env } from "@/lib/env.mjs";
-
+/* eslint-disable no-undef */
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
@@ -18,7 +17,7 @@ const nextConfig = {
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
   async redirects() {
-    if (env.NODE_ENV !== "development") {
+    if (process.env.NODE_ENV !== "development") {
       return [
         {
           source: "/resource",
