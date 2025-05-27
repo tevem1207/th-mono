@@ -1,4 +1,5 @@
-/* eslint-disable no-undef */
+import { env } from "@/lib/env.mjs";
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
@@ -17,8 +18,7 @@ const nextConfig = {
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
   async redirects() {
-    console.log("Redirects are being configured", process.env.NODE_ENV);
-    if (process.env.NODE_ENV !== "development") {
+    if (env.NODE_ENV !== "development") {
       return [
         {
           source: "/resource",
