@@ -1,5 +1,16 @@
+import { NextRequest, NextResponse } from "next/server";
+
 import { createResource } from "@/lib/actions/resources";
 
-export async function GET() {
-  return createResource({ content: "Sample resource content for embedding." });
+export const maxDuration = 30;
+
+export async function POST(req: NextRequest) {
+  const content = await req.json();
+
+  const resource = await createResource(content);
+
+  return NextResponse.json({
+    success: true,
+    resource,
+  });
 }

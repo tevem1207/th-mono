@@ -1,7 +1,6 @@
 import { sql } from "drizzle-orm";
 import { text, timestamp, pgTable, serial } from "drizzle-orm/pg-core";
 import { createSelectSchema } from "drizzle-zod";
-import { z } from "zod";
 
 export const resources = pgTable("resources", {
   id: serial("id").primaryKey(),
@@ -24,4 +23,6 @@ export const insertResourceSchema = createSelectSchema(resources)
   });
 
 // Type for resources - used to type API request params and within Components
-export type NewResourceParams = z.infer<typeof insertResourceSchema>;
+export type NewResourceParams = {
+  content: string;
+};

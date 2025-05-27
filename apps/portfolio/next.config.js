@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
@@ -14,6 +15,24 @@ const nextConfig = {
     ],
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
+  },
+  async redirects() {
+    console.log("Redirects are being configured", process.env.NODE_ENV);
+    if (process.env.NODE_ENV !== "development") {
+      return [
+        {
+          source: "/resource",
+          destination: "/",
+          permanent: false,
+        },
+        {
+          source: "/api/resource",
+          destination: "/",
+          permanent: false,
+        },
+      ];
+    }
+    return [];
   },
 };
 
