@@ -25,6 +25,7 @@
     "@notionhq/client": "^2.3.0",
     "@repo/ui": "workspace:*",
     "@repo/util": "workspace:*",
+    "@t3-oss/env-nextjs": "^0.13.6",
     "@vercel/analytics": "^1.5.0",
     "ai": "^4.2.10",
     "chart.js": "^4.4.8",
