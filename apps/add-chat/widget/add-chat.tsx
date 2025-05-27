@@ -19,7 +19,7 @@ import React, { useEffect, useRef, useState } from "react";
 
 import { AutoResizeTextarea } from "./auto-resize-textarea";
 import { ChatLoadingBubble } from "./chat-loading-bubble";
-import { MessageBubble } from "./message-bubble";
+import { MarkdownMessageBubble, MessageBubble } from "./message-bubble";
 
 export interface AddChatProps {
   title: string;
@@ -102,9 +102,9 @@ export const AddChat = ({ title, api }: AddChatProps) => {
   const messageList = (
     <div className="my-4 flex h-fit min-h-full flex-col gap-4">
       {messages.map(({ role, content }, index) => (
-        <MessageBubble key={index} role={role}>
+        <MarkdownMessageBubble key={index} role={role}>
           {content}
-        </MessageBubble>
+        </MarkdownMessageBubble>
       ))}
       {status === "submitted" && <ChatLoadingBubble />}
     </div>

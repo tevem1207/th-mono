@@ -1,10 +1,20 @@
 import { Message } from "ai";
 import { ReactNode } from "react";
+import ReactMarkdown from "react-markdown";
+import rehypeSanitize from "rehype-sanitize";
+import remarkGfm from "remark-gfm";
 
 interface MessageBubbleProps {
   role: Message["role"];
   children: ReactNode;
 }
+
+export type MarkdownMessageBubbleProps = Omit<
+  MessageBubbleProps,
+  "children"
+> & {
+  children: string;
+};
 
 export const MessageBubble = ({ role, children }: MessageBubbleProps) => {
   return (
@@ -14,5 +24,21 @@ export const MessageBubble = ({ role, children }: MessageBubbleProps) => {
     >
       {children}
     </div>
+  );
+};
+
+export const MarkdownMessageBubble = ({
+  role,
+  children,
+}: MarkdownMessageBubbleProps) => {
+  return (
+    <MessageBubble role={role}>
+      <ReactMarkdown
+        remarkPlugins={[remarkGfm]}
+        rehypePlugins={[rehypeSanitize]}
+      >
+        {children}
+      </ReactMarkdown>
+    </MessageBubble>
   );
 };
