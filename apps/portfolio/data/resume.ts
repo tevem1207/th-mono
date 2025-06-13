@@ -77,6 +77,11 @@ const resumeData: Resume = {
   ],
   certifications: [
     {
+      name: "정보처리기사",
+      issuer: "한국산업인력공단",
+      year: "2025",
+    },
+    {
       name: "ADsP(데이터분석준전문가)",
       issuer: "한국데이터베이스진흥원",
       year: "2021",
