@@ -20,6 +20,46 @@ export type ProjectRole = "frontend-developer" | "backend-developer";
 
 const projectsData: Project[] = [
   {
+    title: "Addie",
+    description:
+      "웹 서비스에 간단히 삽입할 수 있는 경량형 AI 챗봇 위젯입니다. 한 줄의 스크립트로 Shadow DOM 기반 챗봇 UI를 삽입하고, LLM 서버와 연동해 도메인 특화 AI 기능을 제공합니다.",
+    organization: "개인 프로젝트",
+    role: ["frontend-developer", "backend-developer"],
+    startDate: "2024.04",
+    endDate: "2024.06",
+    thumbnail: generateThumbnailPath({
+      src: "/images/addie.png",
+      options: {
+        x: 0,
+        y: 0,
+        tw: 800,
+        th: 600,
+      },
+    }),
+    technologies: [
+      "Next.js",
+      "esbuild",
+      "Shadow DOM",
+      "TypeScript",
+      "Node.js",
+      "Ollama",
+      "Vercel",
+    ],
+    repoUrl: "https://github.com/tevem1207/th-mono/tree/main/apps/add-chat",
+    additionalImages: ["/images/addie-1.png", "/images/addie-2.png"],
+    challenges: [
+      "웹 페이지에 독립적인 챗봇 UI 삽입 구조 설계",
+      "경량화된 LLM 기반 챗봇의 실시간 응답 처리",
+      "사용자 프라이버시 중시한 AI 설계",
+      "위젯과 데모 페이지의 통합 배포 구조 설계",
+    ],
+    solutions: [
+      "Shadow DOM을 활용해 외부 영향 없이 스타일 격리된 위젯 구현",
+      "LLM 서버와 직접 통신하여 사용자 입력 기반 실시간 응답 처리",
+      "모노레포 기반 구조(Turborepo)에서 위젯과 데모 사이트를 분리된 앱으로 구성하여 효율적 유지보수 가능",
+    ],
+  },
+  {
     title: "TypeBoy",
     description:
       "Next.js를 활용해 개발한 풀스택 프로젝트로, 사용자 입력을 통해 타자 연습을 진행할 수 있는 플랫폼입니다. Prisma를 이용해 데이터베이스를 구축하고, Vercel로 배포했습니다.",
@@ -39,7 +79,7 @@ const projectsData: Project[] = [
     technologies: ["Next.js", "Turborepo", "shadcn/ui", "Prisma", "Vercel"],
     demoUrl: "https://typeboy.vercel.app",
     repoUrl: "https://github.com/tevem1207/th-mono/tree/main/apps/typeboy",
-    additionalImages: ["/images/typeboy-1.png", "/images/typeboy-2.png"],
+    additionalImages: [],
     challenges: [
       "Next.js의 SSR을 활용해 SEO 최적화를 적용",
       "Modal 컴포넌트 SEO 최적화",
@@ -80,7 +120,7 @@ const projectsData: Project[] = [
       "React Hook Form",
       "Zod",
     ],
-    additionalImages: ["/images/tcp-paas-1.png", "/images/tcp-paas-2.png"],
+    additionalImages: [],
     challenges: [
       "고객의 요구사항에 맞춰 유연하게 메뉴 구성 변경 필요",
       "각 팀의 UI 스타일이 달라 일관된 디자인 시스템 구축 필요",
@@ -111,7 +151,7 @@ const projectsData: Project[] = [
       },
     }),
     technologies: ["React", "TypeScript", "WebSockets", "Mobx"],
-    additionalImages: ["/images/tcp-iaas-1.png", "/images/tcp-iaas-2.png"],
+    additionalImages: ["/images/tcp-iaas-1.png"],
     challenges: [
       "대규모 리소스 데이터를 효율적으로 시각화하는 문제",
       "다양한 API 상태 변화에 대응하는 UI 안정성 문제",
@@ -141,7 +181,7 @@ const projectsData: Project[] = [
       },
     }),
     technologies: ["React", "Recoil", "WebSocket", "Leaflet.js", "PWA"],
-    additionalImages: ["/images/binjido-1.png", "/images/binjido-2.png"],
+    additionalImages: [],
     challenges: [
       "WebSocket 통신 오류로 인한 메시지 누락 문제",
       "지도 오버레이에서 반응형 UI 설계 문제",
@@ -171,7 +211,7 @@ const projectsData: Project[] = [
       },
     }),
     technologies: ["Vue3", "Pinia", "Python", "Axios", "koNLPy"],
-    additionalImages: ["/images/wooju-1.png", "/images/wooju-2.png"],
+    additionalImages: [],
     challenges: [
       "팀원들과의 데이터 분석 결과 해석 차이",
       "설문 결과 데이터 시각화에서 UX/UI 직관성 문제",
@@ -201,7 +241,7 @@ const projectsData: Project[] = [
       },
     }),
     technologies: ["Vue", "Element Plus", "WebRTC", "JavaScript", "CSS"],
-    additionalImages: ["/images/catchprize-1.png", "/images/catchprize-2.png"],
+    additionalImages: [],
     challenges: [
       "JavaScript와 CSS 애니메이션을 이용한 상호작용 UI 구현 문제",
       "WebSocket을 통한 실시간 친구 목록 및 방 목록 동기화 문제",

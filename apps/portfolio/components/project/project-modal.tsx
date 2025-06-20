@@ -79,21 +79,27 @@ export const ProjectModal = ({
 
             <div>
               <h3 className="text-lg font-semibold mb-3">Project Gallery</h3>
-              <div className="grid grid-cols-2 gap-2">
-                {additionalImages?.map((img, index) => (
-                  <div
-                    key={index}
-                    className="relative h-[100px] rounded-md overflow-hidden"
-                  >
-                    <Image
-                      src={img || "/placeholder.svg"}
-                      alt={`${title} screenshot ${index + 1}`}
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
-                ))}
-              </div>
+              {additionalImages?.length && additionalImages.length > 0 ? (
+                <div className="grid grid-cols-2 gap-2">
+                  {additionalImages.map((img, index) => (
+                    <div
+                      key={index}
+                      className="relative h-[100px] rounded-md overflow-hidden"
+                    >
+                      <Image
+                        src={img}
+                        alt={`${title} screenshot ${index + 1}`}
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div className="flex items-center justify-center h-[100px] rounded-md border border-dashed border-gray-300 text-sm text-gray-500">
+                  이미지가 없습니다
+                </div>
+              )}
             </div>
           </div>
 
@@ -118,18 +124,22 @@ export const ProjectModal = ({
           </div>
 
           <DialogFooter>
-            <Button asChild variant="outline">
-              <a href={repoUrl} target="_blank" rel="noopener noreferrer">
-                <Github className="mr-2 h-4 w-4" />
-                View Code
-              </a>
-            </Button>
-            <Button asChild>
-              <a href={demoUrl} target="_blank" rel="noopener noreferrer">
-                <ExternalLink className="mr-2 h-4 w-4" />
-                Live Demo
-              </a>
-            </Button>
+            {repoUrl && (
+              <Button asChild variant="outline">
+                <a href={repoUrl} target="_blank" rel="noopener noreferrer">
+                  <Github className="mr-2 h-4 w-4" />
+                  View Code
+                </a>
+              </Button>
+            )}
+            {demoUrl && (
+              <Button asChild>
+                <a href={demoUrl} target="_blank" rel="noopener noreferrer">
+                  <ExternalLink className="mr-2 h-4 w-4" />
+                  Live Demo
+                </a>
+              </Button>
+            )}
           </DialogFooter>
         </DialogContent>
       </Dialog>
