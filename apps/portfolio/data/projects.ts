@@ -22,7 +22,7 @@ const projectsData: Project[] = [
   {
     title: "Addie",
     description:
-      "웹 서비스에 간단히 삽입할 수 있는 경량형 AI 챗봇 위젯입니다. 한 줄의 스크립트로 Shadow DOM 기반 챗봇 UI를 삽입하고, LLM 서버와 연동해 도메인 특화 AI 기능을 제공합니다.",
+      "웹 서비스에 간단히 삽입할 수 있는 경량형 AI 챗봇 위젯입니다. 한 줄의 스크립트로 Shadow DOM 기반 챗봇 UI를 삽입하고, LLM 서버와 연동해 도메인 특화 AI 기능을 제공합니다. 현재 사이트 우측 하단에 위젯 형태로 배포되어 있습니다.",
     organization: "개인 프로젝트",
     role: ["frontend-developer", "backend-developer"],
     startDate: "2024.04",
